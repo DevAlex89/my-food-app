@@ -14,7 +14,7 @@ import {useNavigate} from 'react-router-dom';
 function Home() {
     let navigate = useNavigate();
   return (
-    <Container maxW="container.xl">
+    <Container bg='orange.50' maxW="full" overflow='hidden'>
       <Grid>
         <Box>
           <Grid placeItems="center">
@@ -43,7 +43,7 @@ function Home() {
             align="center"
           >
             <Container mt="12">
-              <Heading fontSize="2xl">For the foodies</Heading>
+              <Heading fontSize="2xl" color="green.600">For the foodies</Heading>
               <Text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Temporibus enim neque, aliquam laudantium blanditiis veritatis.
@@ -58,7 +58,7 @@ function Home() {
               </Button>
             </Container>
             <Container mt="12">
-              <Heading fontSize="2xl">For the businesses</Heading>
+              <Heading fontSize="2xl" color="green.600">For the businesses</Heading>
               <Text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
                 expedita tempora quo aliquam, ab hic.
