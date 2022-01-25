@@ -1,9 +1,9 @@
 import { Container , Box , Heading , FormControl , FormLabel ,Input , Button , Text} from '@chakra-ui/react';
 import React ,{useState} from 'react';
 import PlacesAutocomplete ,{geocodeByAddress,getLatLng} from 'react-places-autocomplete';
+import {geohashForLocation}  from 'geofire-common';
 import {db} from './firebase-config';
-import {collection } from 'firebase/firestore';
-import geofire ,{geohashForLocation}  from 'geofire-common';
+import {collection , addDoc } from 'firebase/firestore';
 
 
 
@@ -12,11 +12,12 @@ function BusinessLogIn() {
    const [coordinates, setCoordinates] = useState({lat:null , lng:null});
    const [hash,setHash] = useState('');
    const [newName,setNewName] = useState('');
-   const [newBags , setNewBags] = useState(0)
+   const [newBags , setNewBags] = useState('');
+   const businessCollectionRef = collection(db , 'Businesses')
    
 
 
-    // the function to get coords from address
+    // the function to get coords and geohash from address 
    const handleSelect = async value => {
      const results = await geocodeByAddress(value);
      const latLng = await getLatLng(results[0]);
@@ -26,9 +27,12 @@ function BusinessLogIn() {
    };
 
   //  the function to add new business
-    // const registerNewBusiness = async () => {
-    //     await addDoc(businessCollectionRef , {Name:newName , FoodBags: newBags , Location: coordinates , Geohash: hash})
-    // }
+    const registerNewBusiness = async () => {
+        await addDoc(businessCollectionRef , {Name:newName , FoodBags: newBags , Location: coordinates , Geohash: hash})
+        setAddress('')
+        setNewBags('')
+        setNewName('')
+    }
 
     
 
@@ -58,16 +62,11 @@ function BusinessLogIn() {
             }
          </PlacesAutocomplete>
          <FormLabel>Business Name</FormLabel>
-         <Input type='text' placeholder='Brand name'  onChange={(e)=>{setNewName(e.target.value)}}/>
+         <Input type='text' placeholder='Brand name' value={newName}  onChange={(e)=>{setNewName(e.target.value)}}/>
          <FormLabel>Available Food Bags</FormLabel>
-         <Input type='number' placeholder='*requires number' onChange={(e)=>{setNewBags(e.target.value)}}/>
-         <Button mt={4} type='submit' w='100%' >Register your goods</Button>
+         <Input value={newBags} type='number' placeholder='*requires number' onChange={(e)=>{setNewBags(e.target.value)}}/>
+         <Button mt={4} type='submit' w='100%' onClick={registerNewBusiness}>Register your goods</Button>
     </FormControl>
-    <Box>
-      <Text>{coordinates.lat}</Text>
-      <Text>{coordinates.lng}</Text>
-      <Text>{hash}</Text>
-    </Box>
   </Container>;
 }
 
