@@ -2,7 +2,6 @@ import { initializeApp } from 'firebase/app';
 import 'firebase/firestore';
 import { getFirestore, collection } from 'firebase/firestore';
 
-
 const firebaseConfig = {
   apiKey: 'AIzaSyCfbevVuXFCmPWS0bUc7jYLFy_DghanNHI',
   authDomain: 'save-food-app.firebaseapp.com',
@@ -15,4 +14,4 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
- export {db , app} ;
+export { db, app };
