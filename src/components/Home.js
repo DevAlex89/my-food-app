@@ -9,18 +9,18 @@ import {
   Text,
   Button,
 } from '@chakra-ui/react';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
-    let navigate = useNavigate();
+  let navigate = useNavigate();
   return (
-    <Container bg='orange.50' maxW="full" overflow='hidden'>
+    <Container bg="#fcf8f2" maxW="full" overflow="hidden">
       <Grid>
         <Box>
           <Grid placeItems="center">
             <Container maxW="container.sm" centerContent>
               <Image boxSize="350px" src={farm} alt="vegetables" />
-              <Heading align="center" fontSize="6xl" color="green.600">
+              <Heading align="center" fontSize="6xl" color="#114d4d">
                 Hello World
               </Heading>
               <Text align="center" fontSize="xl" mt="3" color="green.900">
@@ -43,27 +43,38 @@ function Home() {
             align="center"
           >
             <Container mt="12">
-              <Heading fontSize="2xl" color="green.600">For the foodies</Heading>
+              <Heading fontSize="2xl" color="#114d4d">
+                For the foodies
+              </Heading>
               <Text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Temporibus enim neque, aliquam laudantium blanditiis veritatis.
               </Text>
               <Button
                 mt="4"
-                bg="green.500"
-                color="white"
-                onClick={()=>{navigate('/UserLogIn')}}
+                color="#114d4d" variant='ghost' borderColor='#114d4d' border='1px solid' _hover={{bg: '#114d4d', color:'white'}}
+                onClick={() => {
+                  navigate('/UserLogIn');
+                }}
               >
                 Sign In
               </Button>
             </Container>
             <Container mt="12">
-              <Heading fontSize="2xl" color="green.600">For the businesses</Heading>
+              <Heading fontSize="2xl" color="#114d4d">
+                For the businesses
+              </Heading>
               <Text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
                 expedita tempora quo aliquam, ab hic.
               </Text>
-              <Button mt="4" bg="green.500" color="white" onClick={()=>{navigate('/BusinessLogIn')}}>
+              <Button
+                mt="4"
+                color="#114d4d" variant='ghost' borderColor='#114d4d' border='1px solid' _hover={{bg: '#114d4d', color:'white'}}
+                onClick={() => {
+                  navigate('/BusinessLogIn');
+                }}
+              >
                 Sign In
               </Button>
             </Container>
