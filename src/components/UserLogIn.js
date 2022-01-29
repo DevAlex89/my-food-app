@@ -1,53 +1,47 @@
-import { Button, Container , Input } from '@chakra-ui/react';
-import {
-  geohashForLocation,
-  geohashQueryBounds,
-  distanceBetween
-} from "geofire-common";
+import { Button, Container , Input, position } from '@chakra-ui/react';
 import React, { useState } from 'react';
-import {db} from './firebase-config';
-import { collection } from 'firebase/firestore';
+import {db ,firebaseConfig} from './firebase-config';
+import { collection  } from 'firebase/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import * as geofirestore from 'geofirestore';
 
 const UserLogIn = () => {
-  var center = [51.5074, 0.1278];
-  const radiusInKm = 10;
-  const [userPosition , setUserPosition] = useState([]);
-  const businessCollectionRef = collection(db , 'Businesses')
-  const [hash , setHash] = useState('')
+  const [userPosition , setUserPosition] = useState({ lat: null, lng: null });
+  firebase.initializeApp(firebaseConfig);
+  const businessCollectionRef = collection(db, 'shops');
+  const firestore = firebase.firestore();
+  const GeoFirestore = geofirestore.initializeApp(firestore);
+  const geocollection = GeoFirestore.collection('shopsLocation');
+
 
   const trackUser = ()=> {
      navigator.geolocation.getCurrentPosition(function(position) {
       console.log(position.coords);
-      setUserPosition(position)
-      setHash( geohashForLocation([position.coords.latitude ,position.coords.longitude ]))
-      console.log(hash)
+      setUserPosition({lat:position.coords.latitude , lng: position.coords.longitude})
+      
     });
   }
 
-  // var tasks = [];
-  // var geohashesToQuery = geohashQueryBounds(center, radiusInKm * 1000);
-  // var tasks = geohashesToQuery.map(function(geohashes) {
-  //   return db
-  //     .collection("Businesses")
-  //     .orderBy("geohash")
-  //     .startAt(geohashes[0])
-  //     .endAt(geohashes[1])
-  //     .get();
-  // });
-//   const promises = [];
-//   for (const b of bounds) {
-//   const q = db.collection('Businesses')
-//     .orderBy('geohash')
-//     .startAt(b[0])
-//     .endAt(b[1]);
+  const getNearShops = async () =>{
+    const query = geocollection.near({ center: new firebase.firestore.GeoPoint(userPosition.lat , userPosition.lng), radius: 1000 });
+    await query.get().then((value) => {
+      // All GeoDocument returned by GeoQuery, like the GeoDocument added above
+      console.log(value.docs.Name);
+    });
+    
+  }
 
-//   promises.push(q.get());
-// }
+
+ 
   return (
       <Container>
         <h2>location</h2>
         <Input type="text" />
         <Button onClick={trackUser}>Go</Button>
+        <Button onClick={getNearShops}>Search</Button>
+        
       </Container>
   )
 };

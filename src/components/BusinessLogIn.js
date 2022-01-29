@@ -14,19 +14,28 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
-import { geohashForLocation } from 'geofire-common';
-import { db } from './firebase-config';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
+import { db, firebaseConfig } from './firebase-config';
 import { collection, addDoc, GeoPoint } from 'firebase/firestore';
+import * as geofirestore from 'geofirestore';
+
+
+
 
 function BusinessLogIn() {
   let navigate = useNavigate();
   const [address, setAddress] = useState('');
   const [coordinates, setCoordinates] = useState({ lat: null, lng: null });
-  const [hash, setHash] = useState('');
   const [newName, setNewName] = useState('');
   const [newBags, setNewBags] = useState('');
   const [newMail, setNewMail] = useState('');
-  const businessCollectionRef = collection(db, 'Businesses');
+  firebase.initializeApp(firebaseConfig);
+  const businessCollectionRef = collection(db, 'shops');
+  const firestore = firebase.firestore();
+  const GeoFirestore = geofirestore.initializeApp(firestore);
+  const geocollection = GeoFirestore.collection('shopsLocation');
 
   // the function to get coords and geohash from address
   const handleSelect = async value => {
@@ -34,20 +43,24 @@ function BusinessLogIn() {
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setCoordinates(latLng);
-    setHash(geohashForLocation([latLng.lat, latLng.lng]));
   };
 
   //  the function to add new business
-  const registerNewBusiness = async () => {
-    await addDoc(businessCollectionRef, {
+  const registerNewBusiness =  () => {
+     addDoc(businessCollectionRef, {
       Adress: address,
       Name: newName,
       FoodBags: newBags,
       Email: newMail,
       location: new GeoPoint(coordinates.lat, coordinates.lng),
-      geohash: hash,
-    });
-
+    })
+    geocollection.add({
+      name: newName,
+      score: 100,
+      // The coordinates field must be a GeoPoint!
+      coordinates: new firebase.firestore.GeoPoint(coordinates.lat, coordinates.lng)
+    })
+    
     setAddress('');
     setNewBags('');
     setNewMail('');

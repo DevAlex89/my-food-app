@@ -1,17 +1,24 @@
-import { initializeApp } from 'firebase/app';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
 import 'firebase/firestore';
-import { getFirestore, collection } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyCfbevVuXFCmPWS0bUc7jYLFy_DghanNHI',
-  authDomain: 'save-food-app.firebaseapp.com',
-  projectId: 'save-food-app',
-  storageBucket: 'save-food-app.appspot.com',
-  messagingSenderId: '49052333865',
-  appId: '1:49052333865:web:3acd44d98f3535a305e938',
-  measurementId: 'G-SRBV9YTDHQ',
+  apiKey: "AIzaSyBNHcNYKmQ_1JlXrOKPe5HNuRWu9BzgQs8",
+  authDomain: "fritternot.firebaseapp.com",
+  projectId: "fritternot",
+  storageBucket: "fritternot.appspot.com",
+  messagingSenderId: "760610387229",
+  appId: "1:760610387229:web:eb9f9ca75b001740949df4",
+  measurementId: "G-XN4NM57287"
 };
 
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-export { db, app };
+export {db , firebaseConfig};
