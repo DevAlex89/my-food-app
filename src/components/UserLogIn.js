@@ -1,4 +1,4 @@
-import { Button, Container , Input, position } from '@chakra-ui/react';
+import { Button, Container , Input, Box , Text} from '@chakra-ui/react';
 import React, { useState } from 'react';
 import {db ,firebaseConfig} from './firebase-config';
 import { collection  } from 'firebase/firestore';
@@ -9,6 +9,7 @@ import * as geofirestore from 'geofirestore';
 
 const UserLogIn = () => {
   const [userPosition , setUserPosition] = useState({ lat: null, lng: null });
+  const [shopList , setShopList] = useState([])
   firebase.initializeApp(firebaseConfig);
   const businessCollectionRef = collection(db, 'shops');
   const firestore = firebase.firestore();
@@ -24,14 +25,22 @@ const UserLogIn = () => {
     });
   }
 
-  const getNearShops = async () =>{
+
+
+  // query for the shops based on the user location
+
+  const getNearShops =  () =>{
     const query = geocollection.near({ center: new firebase.firestore.GeoPoint(userPosition.lat , userPosition.lng), radius: 1000 });
-    await query.get().then((value) => {
+      query.get().then((value) => {
       // All GeoDocument returned by GeoQuery, like the GeoDocument added above
-      console.log(value.docs.Name);
-    });
-    
-  }
+      //  console.log(value.docs)
+       for( const doc of value.docs){
+        //  console.log(doc.data())
+          shopList.push(doc.data())
+         }
+       setUserPosition({ lat: null, lng: null })
+    });   
+  };
 
 
  
@@ -39,8 +48,24 @@ const UserLogIn = () => {
       <Container>
         <h2>location</h2>
         <Input type="text" />
-        <Button onClick={trackUser}>Go</Button>
+        <Button mr={4} onClick={trackUser}>Go</Button>
         <Button onClick={getNearShops}>Search</Button>
+          { shopList.length ? (
+           <Container bg='ThreeDShadow'>
+         
+              {shopList.map((element ,i)=>( 
+                <Box mt={4}> 
+                  <Text key={element.id}>{element.Name}</Text>
+                  <Text key={element.id}>{element.Adress}</Text>
+                  <Text key={element.id}>Available Bags of Goods :{element.FoodBags}</Text>
+              </Box>
+              ))}
+        
+           </Container>
+           ) : (
+             <Box>Click the search button to see the shops near you</Box>
+
+           ) }
         
       </Container>
   )

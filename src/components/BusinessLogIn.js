@@ -55,8 +55,10 @@ function BusinessLogIn() {
       location: new GeoPoint(coordinates.lat, coordinates.lng),
     })
     geocollection.add({
-      name: newName,
-      score: 100,
+      Adress: address,
+      Name: newName,
+      FoodBags: newBags,
+      Email: newMail,
       // The coordinates field must be a GeoPoint!
       coordinates: new firebase.firestore.GeoPoint(coordinates.lat, coordinates.lng)
     })
@@ -119,7 +121,7 @@ function BusinessLogIn() {
                   {loading ? <Box>Loading..</Box> : null}
                   {suggestions.map(suggestion => {
                     const style = {
-                      backgroundColor: suggestion.active ? 'green' : 'white',
+                      backgroundColor: suggestion.active ? 'green' : '#fcf8f2',
                       cursor: 'pointer',
                     };
                     return (
@@ -147,7 +149,7 @@ function BusinessLogIn() {
             focusBorderColor="#114d4d"
             value={newMail}
             type="mail"
-            placeholder="email"
+            placeholder="Email"
             onChange={e => {
               setNewMail(e.target.value);
             }}
@@ -157,7 +159,7 @@ function BusinessLogIn() {
             focusBorderColor="#114d4d"
             value={newBags}
             type="number"
-            placeholder="*requires number"
+            placeholder="*Requires number"
             onChange={e => {
               setNewBags(e.target.value);
             }}

@@ -21,7 +21,7 @@ function Home() {
             <Container maxW="container.sm" centerContent>
               <Image boxSize="350px" src={farm} alt="vegetables" />
               <Heading align="center" fontSize="6xl" color="#114d4d">
-                Hello World
+                FritterNot
               </Heading>
               <Text align="center" fontSize="xl" mt="3" color="green.900">
                 We dream of a planet with no food waste, and every day we’re
@@ -52,7 +52,11 @@ function Home() {
               </Text>
               <Button
                 mt="4"
-                color="#114d4d" variant='ghost' borderColor='#114d4d' border='1px solid' _hover={{bg: '#114d4d', color:'white'}}
+                color="#114d4d"
+                variant="ghost"
+                borderColor="#114d4d"
+                border="1px solid"
+                _hover={{ bg: '#114d4d', color: 'white' }}
                 onClick={() => {
                   navigate('/UserLogIn');
                 }}
@@ -70,7 +74,11 @@ function Home() {
               </Text>
               <Button
                 mt="4"
-                color="#114d4d" variant='ghost' borderColor='#114d4d' border='1px solid' _hover={{bg: '#114d4d', color:'white'}}
+                color="#114d4d"
+                variant="ghost"
+                borderColor="#114d4d"
+                border="1px solid"
+                _hover={{ bg: '#114d4d', color: 'white' }}
                 onClick={() => {
                   navigate('/BusinessLogIn');
                 }}
