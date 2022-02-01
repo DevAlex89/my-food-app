@@ -23,6 +23,7 @@ function Home() {
               <Heading align="center" fontSize="6xl" color="#114d4d">
                 FritterNot
               </Heading>
+              <Heading color='#49ada1'>Why waste fine food?</Heading>
               <Text align="center" fontSize="xl" mt="3" color="green.900">
                 We dream of a planet with no food waste, and every day we’re
                 working on making that a reality. Log on, and get saving

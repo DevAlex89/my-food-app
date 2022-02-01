@@ -121,7 +121,7 @@ function BusinessLogIn() {
                   {loading ? <Box>Loading..</Box> : null}
                   {suggestions.map(suggestion => {
                     const style = {
-                      backgroundColor: suggestion.active ? 'green' : '#fcf8f2',
+                      backgroundColor: suggestion.active ? '#49ada1' : '#fcf8f2',
                       cursor: 'pointer',
                     };
                     return (
