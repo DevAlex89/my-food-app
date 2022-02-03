@@ -1,7 +1,8 @@
-import { Button, Container , Input, InputGroup, Box , Text , Heading, InputLeftElement} from '@chakra-ui/react';
+import { Button, Container , Input, InputGroup, Box , Text , Heading, InputLeftElement, Grid, GridItem} from '@chakra-ui/react';
 import {HiOutlineLocationMarker} from 'react-icons/hi'
 import {BsSearch} from 'react-icons/bs'
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
@@ -11,13 +12,18 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import * as geofirestore from 'geofirestore';
+import {signInWithGmail} from './firebase-config';
 
 const UserLogIn = () => {
+  let navigate = useNavigate();
   const [userPosition , setUserPosition] = useState({ lat: null, lng: null });
   const [shopList , setShopList] = useState([])
   const [address, setAddress] = useState('');
+  const [userEmail, setUserEmail] = useState('');
+
+
+// initialize geofirestore
   firebase.initializeApp(firebaseConfig);
-  
   const firestore = firebase.firestore();
   const GeoFirestore = geofirestore.initializeApp(firestore);
   const geocollection = GeoFirestore.collection('shopsLocation');
@@ -59,6 +65,21 @@ const UserLogIn = () => {
   };
 
 
+  // Sign in user
+  const signInUser = async () => {
+    try{
+      const userData = await signInWithGmail()
+      setUserEmail(userData.user.email)
+      console.log(userData.user.email)
+      
+      navigate('/UserThank')
+    }
+    catch (error){
+      alert(error.message)
+    }
+  }
+
+  
  
   return (
     <Box overflow='hidden' bg='#fcf8f2' maxW='full' minH='100vh' centerContent>
@@ -114,15 +135,25 @@ const UserLogIn = () => {
            </Container>
             
           { shopList.length ? (
-           <Container bg='ThreeDShadow'>
+           <Container bg='#fcf8f2' maxW='fit-content' mt={12}>
+             <Grid templateColumns='repeat(3, 1fr)' gap={8}>
          
               {shopList.map((element ,i)=>( 
-                <Box mt={4}> 
-                  <Text key={element.id}>{element.Name}</Text>
-                  <Text key={element.id}>{element.Adress}</Text>
-                  <Text key={element.id}>Available Bags of Goods :{element.FoodBags}</Text>
-              </Box>
+                <GridItem mt={4} border='1px solid' p={5} w='100%' > 
+                  <Heading mb={3} size='xl' color="#114d4d" key={element.id}>{element.Name}</Heading>
+                  <Text fontSize='xl' key={element.id}>{element.Adress}</Text>
+                  <Text fontSize='xl' color='#49ada1' mt={3} key={element.id}>Available Bags of Goods :{element.FoodBags}</Text>
+                  <Button mt="4"
+                    color="#114d4d"
+                    variant="ghost"
+                    borderColor="#114d4d"
+                    border="1px solid"
+                    _hover={{ bg: '#114d4d', color: 'white' }}
+                    onClick={signInUser}>
+                     Grab the goods!</Button>
+              </GridItem>
               ))}
+              </Grid>
         
            </Container>
            ) : (
