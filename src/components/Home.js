@@ -1,8 +1,9 @@
 import React from 'react';
 import organic from '../assets/organic.jpg';
-import globe from '../assets/globe.png'
+import globe1 from '../assets/globe1.png'
 import bagandfood from '../assets/bagandfood.png'
 import trashbin from '../assets/trashbin.png'
+
 import {
   Box,
   Container,
@@ -39,18 +40,18 @@ function Home() {
                   planet. Get started now!
                 </Text>
               </Container>
-              <Image  boxSize="500px" w='60%' objectFit='cover' src={organic} alt="organic food and people" loading="lazy"  />
+              <Image  boxSize="lg" w='60%' objectFit='cover' src={organic} alt="organic food and people" loading="lazy"  />
             </Container>
           </Grid>
             <Container maxW='full' bg='#114d4d' minH='85vh' mt={20} centerContent>
-              <Flex   w='60%'>
+              <Flex   w='90%'>
                 <Grid mt={12} mr={8}>
                   <Heading color='white' fontSize='6xl' mb={2}>FOOD WASTE, A WORLDWIDE ISSUE</Heading>
                   <Text fontSize='3xl' color='#49ada1' align='start' mr={16} mt={4}>AN UNKNOWN REALITY</Text>
                   <Text fontSize='2xl'color='white' mt={16}>Each year, more than one third of food produced in the world goes to waste, and it is responsible for 10% of all greenhouse gas emissions. We are on a mission to change that - are you with us ?</Text>
                 </Grid>
-                <Center ml={16} w='100%'>
-                  <Image src={globe}  boxSize='350px'  />
+                <Center ml={16} maxWidth='100%' pr={8}>
+                  <Image src={globe1}  boxSize='lg' objectFit='contain'  />
                 </Center>
               </Flex>
             </Container>

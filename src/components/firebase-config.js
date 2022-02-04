@@ -6,13 +6,13 @@ import {getAuth, GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBNHcNYKmQ_1JlXrOKPe5HNuRWu9BzgQs8",
-  authDomain: "fritternot.firebaseapp.com",
-  projectId: "fritternot",
-  storageBucket: "fritternot.appspot.com",
-  messagingSenderId: "760610387229",
-  appId: "1:760610387229:web:eb9f9ca75b001740949df4",
-  measurementId: "G-XN4NM57287"
+  apiKey: process.env.REACT_APP_FB_API,
+  authDomain: process.env.REACT_APP_FB_DOMAIN,
+  projectId: process.env.REACT_APP_FB_PROJECT,
+  storageBucket: process.env.REACT_APP_FB_STORAGE,
+  messagingSenderId: process.env.REACT_APP_FB_SENDER,
+  appId: process.env.REACT_APP_FB_APP,
+  measurementId: process.env.REACT_APP_FB_MEASURE
 };
 
 // Initialize Firebase
