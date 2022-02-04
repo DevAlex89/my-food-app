@@ -73,14 +73,14 @@ function BusinessLogIn() {
   return (
     <Box
       maxW="full"
-      bg="#fcf8f2"
+      bg="white"
       height="100vh"
       overflow="hidden"
       centerContent
     >
       <Container
         maxW="container.lg"
-        bg="#fcf8f2"
+        bg="white"
         centerContent
         mt={14}
         py={10}
@@ -121,7 +121,7 @@ function BusinessLogIn() {
                   {loading ? <Box>Loading..</Box> : null}
                   {suggestions.map(suggestion => {
                     const style = {
-                      backgroundColor: suggestion.active ? '#49ada1' : '#fcf8f2',
+                      backgroundColor: suggestion.active ? '#49ada1' : 'white',
                       cursor: 'pointer',
                     };
                     return (

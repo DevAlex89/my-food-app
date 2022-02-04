@@ -5,6 +5,7 @@ import Home from './components/Home'
 import UserLogIn from './components/UserLogIn';
 import BusinessLogIn from './components/BusinessLogIn';
 import UserThank from './components/UserThank';
+import  Navbar  from './components/Navbar';
 
 
 
@@ -13,6 +14,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <Router>
+        <Navbar />
         <Routes>
           <Route path='/' element={<Home/>} />
           <Route path='/UserLogIn' element={<UserLogIn/>} />

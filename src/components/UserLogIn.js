@@ -82,7 +82,7 @@ const UserLogIn = () => {
   
  
   return (
-    <Box overflow='hidden' bg='#fcf8f2' maxW='full' minH='100vh' centerContent>
+    <Box overflow='hidden' bg='white' maxW='full' minH='100vh' centerContent>
       <Container maxW='container.lg'  mt={12} centerContent>
         <Heading color="#114d4d" mb={4}>Find Goodies Near You</Heading>
           <Container >
@@ -119,7 +119,7 @@ const UserLogIn = () => {
                   {loading ? <Box>Loading..</Box> : null}
                   {suggestions.map(suggestion => {
                     const style = {
-                      backgroundColor: suggestion.active ? '#49ada1' : '#fcf8f2',
+                      backgroundColor: suggestion.active ? '#49ada1' : 'white',
                       cursor: 'pointer',
                     };
                     return (
