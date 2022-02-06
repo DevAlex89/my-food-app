@@ -38,6 +38,14 @@ import {Box, Button, Flex, Img, Spacer, Container} from '@chakra-ui/react';
                     border="1px solid"
                     _hover={{ bg: '#114d4d', color: 'white' }}
                     onClick={()=>{navigate('/')}}>About</Button>
+                    <Button 
+                    mr={3}
+                    color="#114d4d"
+                    variant="ghost"
+                    borderColor="#114d4d"
+                    border="1px solid"
+                    _hover={{ bg: '#114d4d', color: 'white' }}
+                    onClick={()=>{navigate('/BusinessLogin')}}>Log In</Button>
                 </Box>
             </Flex>
         </Container>

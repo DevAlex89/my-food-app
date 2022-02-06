@@ -98,7 +98,7 @@ function Home() {
                 border="1px solid"
                 _hover={{ bg: '#114d4d', color: 'white' }}
                 onClick={() => {
-                  navigate('/BusinessLogIn');
+                  navigate('/BusinessRegister');
                 }}
               >
                 Register your business
