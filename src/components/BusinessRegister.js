@@ -7,8 +7,11 @@ import {
   Input,
   Button,
   Text,
+  Alert,
+  Link,
+  Flex
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlacesAutocomplete, {
   geocodeByAddress,
@@ -33,7 +36,9 @@ function BusinessRegister() {
   const [newName, setNewName] = useState('');
   const [newBags, setNewBags] = useState('');
   const [newMail, setNewMail] = useState('');
-  const [password, setNewPassword] = useState('')
+  const passwordRef = useRef()
+  const confirmPasswordRef = useRef()
+  const [error, setError] = useState('')
 
 
   firebase.initializeApp(firebaseConfig);
@@ -52,9 +57,14 @@ function BusinessRegister() {
 
   //  the function to add new business
    
-  const register = async () => {
+  const register = async (e) => {
+    e.preventDefault()
+    if (passwordRef.current.value !== confirmPasswordRef.current.value){
+      return setError('Passwords do not match')
+    }
     try{
-      const user = await createUserWithEmailAndPassword(auth, newMail, password)
+      setError('')
+      const user = await createUserWithEmailAndPassword(auth, newMail, passwordRef.current.value)
       
       await setDoc(doc(businessCollectionRef, user.user.uid),({
         Adress: address,
@@ -74,10 +84,10 @@ function BusinessRegister() {
         coordinates: new firebase.firestore.GeoPoint(coordinates.lat, coordinates.lng)
     })
 
-    } catch (error){
-      console.log(error)
+    } catch {
+      setError('Failed to create an account')
     }
-    navigate('/BusinessLogin')
+    
   }
   
 
@@ -85,7 +95,6 @@ function BusinessRegister() {
     <Box
       maxW="full"
       bg="white"
-      height="100vh"
       overflow="hidden"
       centerContent
     >
@@ -102,6 +111,7 @@ function BusinessRegister() {
           <Heading color="#114d4d" align="center" mt={4} mb={4}>
             Sign up your business and save food waste
           </Heading>
+          {error && <Alert status='error'>{error}</Alert>}
           <Text color="green.900" mb={8} align="center">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
             rerum nesciunt similique eveniet ipsam! Earum quaerat accusamus ab
@@ -165,16 +175,25 @@ function BusinessRegister() {
               setNewMail(e.target.value);
             }}
           />
+          
           <FormLabel color="#114d4d"> Password</FormLabel>
           <Input
             focusBorderColor="#114d4d"
-            value={password}
             type="password"
             placeholder="*Requires at least 6 characters"
-            onChange={e => {
-              setNewPassword(e.target.value);
-            }}
+            ref={passwordRef}
+            required
           />
+
+          <FormLabel color="#114d4d"> Confirm Password</FormLabel>
+          <Input
+            focusBorderColor="#114d4d"
+            ref={confirmPasswordRef}
+            type="password"
+            required
+            placeholder="Re-type password"
+          />
+
           <FormLabel color="#114d4d">Available Food Bags</FormLabel>
           <Input
             focusBorderColor="#114d4d"
@@ -198,6 +217,10 @@ function BusinessRegister() {
           >
             Register your goods
           </Button>
+      <Flex mt={5}>
+          <Box mr={3}> Already have an account? </Box> 
+          <Link to="/BusinessLogin" color='#49ada1'>Log In</Link>
+       </Flex>
         </FormControl>
       </Container>
     </Box>

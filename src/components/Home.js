@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
   let navigate = useNavigate();
   return (
-    <Container bg="white" maxW="full" overflow="hidden" mt={8}>
+    <Container bg="white" maxW="full"  mt={8}>
       <Grid>
         <Box>
           <Grid placeItems="center">
@@ -64,7 +64,7 @@ function Home() {
             </Container>
             <Grid templateColumns='repeat(2, 1fr)' gap='2' mt={18} placeItems='center'>
               <GridItem>
-                <Image src={bagandfood} boxSize='lg'/>
+                <Image src={bagandfood} boxSize='sm' objectFit='fit'/>
               </GridItem>
               <GridItem>
                 <Heading color='#114d4d' mt={8} fontSize='5xl'>CREATING REAL CHANGE</Heading>
@@ -105,7 +105,7 @@ function Home() {
               </Button>
               </GridItem>
               <GridItem>
-                <Image src={trashbin} boxSize='lg' />
+                <Image src={trashbin} boxSize='sm' objectFit='cover' />
               </GridItem>
             </Grid>
         </Box>

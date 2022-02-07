@@ -9,11 +9,12 @@ import {
   Alert,
   Flex,
   Spacer,
-  Text
+  Text,
+  Link
 } from '@chakra-ui/react';
 import React, { useState , useRef } from 'react';
 import { useAuthContext } from '../contexts/AuthContext';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 const BusinessLogin = () => {
   let navigate = useNavigate();
@@ -34,7 +35,6 @@ const BusinessLogin = () => {
       if (emailRef && passwordRef)
       await login( emailRef.current.value, passwordRef.current.value)
       .then ((userCred)=>{
-        console.log(userCred.user)
         navigate('/Dashboard')
       })
       setLoading(false)
@@ -55,17 +55,19 @@ const BusinessLogin = () => {
 
   return (
     <Container>
-      <Heading align='center'>Log In</Heading>
+      <Heading align='center' color='#114d4d' >Log In</Heading>
       {error && <Alert status="error">{error}</Alert>}
       <FormControl  >
-        <FormLabel>Email</FormLabel>
+        <FormLabel color='#114d4d'>Email</FormLabel>
         <Input
+          focusBorderColor="#114d4d"
           type="email"
           ref={emailRef}
           required
         />
-        <FormLabel>Password</FormLabel>
+        <FormLabel color='#114d4d'>Password</FormLabel>
         <Input
+          focusBorderColor="#114d4d"
           type="password"
           ref={passwordRef}
           required
@@ -83,12 +85,12 @@ const BusinessLogin = () => {
         w="100%"
         onClick={handleSubmit}
         >Log In</Button>
-        <Flex>
+        <Flex mt={5}>
           <Box>
-          Need an account? <Link to="/BusinessRegister">Sign Up</Link>
+          Need an account? <Link ml={2} color='#49ada1' to="/BusinessRegister">Sign Up</Link>
           </Box>
           <Spacer />
-          <Text cursor='pointer' onClick={forgotPasswordHandler}>Forgot your password?</Text>
+          <Text cursor='pointer' _hover={{textDecor:'underline'}} color='#49ada1' onClick={forgotPasswordHandler}>Forgot your password?</Text>
         </Flex>
     </Container>
   );

@@ -1,4 +1,4 @@
-import {  Button, Container, Heading, Input } from "@chakra-ui/react";
+import { Alert, Button, Container, Flex, Heading, Input, Text } from "@chakra-ui/react";
 import React, { useEffect, useRef, useState } from "react";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from './firebase-config';
@@ -14,6 +14,8 @@ const Dashboard = () => {
     let navigate = useNavigate()
     const { currentUser, logoutUser} = useAuthContext()
     const [data, setData] = useState({})
+    const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
     const bagRef = useRef()
 
 
@@ -34,11 +36,13 @@ const Dashboard = () => {
         if (docSnap.exists()) {
             setData( docSnap.data())
           } else {
-            console.log("No such document!");
+            setError("No such document!");
           }
     }
 
     const updateDocs = async () => {
+        setError('')
+        try{
         const docRef = doc(db, "shops", currentUser.uid);
         await updateDoc(docRef, {
             FoodBags: bagRef.current.value
@@ -47,30 +51,53 @@ const Dashboard = () => {
         await updateDoc(geoDocRef, {
             FoodBags: bagRef.current.value
         })
-        alert('Changes saved successfully!')
+        }catch(err){
+            setError('Something went wrong! Please try again')
+            console.log(err.message)
+        }
+        setMessage('Changes saved successfully!')
    
     }
 
     const handleLogout = async () => {
+        setError('')
         try{
             logoutUser()
             navigate('/')
-        }catch(err){
-            alert(err.message)
+        }catch{
+            
+            setError('Failed to log out')
         }
     }
 
 
     return(
-        <Container>
-            <Heading>Dashboard</Heading>
-            <Heading>Name : {data.Name}</Heading>
-            <Heading>Address : {data.Adress}</Heading>
-            <Heading>Email : {data.Email}</Heading>
-            <Heading>Available bags of food : {data.FoodBags}</Heading>
-            <Input type='number' placeholder="New amount of food bags" ref={bagRef}/>
-            <Button onClick={updateDocs}>Save changes</Button>
-            <Button onClick={handleLogout}>Log Out</Button>
+        <Container centerContent>
+            <Heading mb={8}  color="#114d4d">Dashboard</Heading>
+            {error && <Alert status="error">{error}</Alert>}
+            {message && <Alert status="success">{message}</Alert>}
+            <Heading color="#114d4d" size='lg' mb={2}>Name </Heading> <Text mb={4} fontSize='xl' color="#114d4d">{data.Name}</Text>
+            <Heading color="#114d4d" size='lg' mb={2}>Address </Heading><Text mb={4} fontSize='xl' color="#114d4d">{data.Adress}</Text>
+            <Heading color="#114d4d" size='lg' mb={2}>Email</Heading> <Text mb={4} fontSize='xl' color="#114d4d">{data.Email}</Text>
+            <Heading color="#114d4d" size='lg' mb={2}>Available bags of food</Heading> <Text mb={4} fontSize='xl' color="#114d4d">{data.FoodBags}</Text>
+            <Input focusBorderColor="#114d4d" type='number' mb={4} w='50%' placeholder="New amount of food bags" ref={bagRef}/>
+            <Flex>
+                <Button 
+                mr={4} 
+                color="#114d4d"
+                variant="ghost"
+                borderColor="#114d4d"
+                border="1px solid"
+                _hover={{ bg: '#114d4d', color: 'white' }}
+                onClick={updateDocs}>Save changes</Button>
+                <Button 
+                color="#114d4d"
+                variant="ghost"
+                borderColor="#114d4d"
+                border="1px solid"
+                _hover={{ bg: '#114d4d', color: 'white' }}
+                onClick={handleLogout}>Log Out</Button>
+            </Flex>
         </Container>
     )
 

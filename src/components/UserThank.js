@@ -1,6 +1,7 @@
-import { Container, Heading, Text, Flex, Button, Box} from '@chakra-ui/react';
+import { Container, Heading, Text, Flex, Button, Box, Image} from '@chakra-ui/react';
 import React from 'react';
 import {useNavigate} from 'react-router-dom'
+import happymeal from '../assets/happymeal.png'
 
 const UserThank = () => {
     let navigate = useNavigate()
@@ -9,9 +10,10 @@ const UserThank = () => {
       maxW="full"
       minH="100vh"
       centerContent
-      bg="#fcf8f2"
+      bg="white"
       overflow="hidden"
     >
+      <Image src={happymeal} boxSize='md'/>
       <Heading mt={8} color="#114d4d">
         Thank you for using FritterNot!!
       </Heading>
