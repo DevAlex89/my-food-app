@@ -85,9 +85,9 @@ const BusinessLogin = () => {
         w="100%"
         onClick={handleSubmit}
         >Log In</Button>
-        <Flex mt={5}>
+        <Flex mt={5} flexDir={['column','column','row','row']}>
           <Box>
-          Need an account? <Link ml={2} color='#49ada1' to="/BusinessRegister">Sign Up</Link>
+          Need an account? <Link ml={2} color='#49ada1' href="/BusinessRegister">Sign Up</Link>
           </Box>
           <Spacer />
           <Text cursor='pointer' _hover={{textDecor:'underline'}} color='#49ada1' onClick={forgotPasswordHandler}>Forgot your password?</Text>

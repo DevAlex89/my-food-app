@@ -9,6 +9,7 @@ import UserThank from './components/UserThank';
 import  Navbar  from './components/Navbar';
 import  BusinessRegister  from './components/BusinessRegister';
 import Dashboard from './components/Dashboard';
+import Footer from './components/Footer';
 
 
 
@@ -27,7 +28,7 @@ function App() {
             <Route path='/BusinessRegister' element={<BusinessRegister/>} />
             <Route path='/Dashboard' element={<Dashboard/>} />
           </Routes>
-        {/* possibly a footer */}
+          <Footer />
         </UseAuthContextProvider>
       </Router>
     </ChakraProvider>

@@ -13,48 +13,50 @@ import {
   Text,
   Button,
   Flex,
-  VStack,
   Center,
-  GridItem,
 } from '@chakra-ui/react';
 import { useNavigate } from 'react-router-dom';
 
 function Home() {
   let navigate = useNavigate();
   return (
-    <Container bg="white" maxW="full"  mt={8}>
-      <Grid>
-        <Box>
-          <Grid placeItems="center">
-            <Container maxW="container.xl" display='flex' alignItems='center' justifyContent='space-between' mb={20}>
-              <Container mr={8} w='50%' p='5' mt={16}>
+    <Box bg="white" maxW="full"  mt={8}>
+          <Flex align='center' justify='center' flexDir={['column','column','row','row']}>
+              <Box mr={8}   mt={16} w={['100%','100%','50%','50%']}>
                 <Heading align="center" fontSize="6xl" color="#114d4d">
                   FritterNot
                 </Heading>
                 <Heading color='#49ada1' align='center' mb={14}>Why waste fine food?</Heading>
-                <Text align="center" fontSize="xl"  color="green.900">
+                <Text align="center" ml={[5,5,0,0]} fontSize={['md','md','xl',"xl"]}  color="green.900" >
                   We dream of a planet with no food waste, and every day we’re
                   working on making that a reality. Log on, and get saving
                   perfectly good, surplus food from your local stores. It’s always
                   a surprise, at a great price, and an instant good deed for the
                   planet. Get started now!
                 </Text>
-              </Container>
-              <Image  boxSize="lg" w='60%' objectFit='cover' src={organic} alt="organic food and people" loading="lazy"  />
-            </Container>
-          </Grid>
-            <Container maxW='full' bg='#114d4d' minH='85vh' mt={20} centerContent>
-              <Flex   w='90%'>
-                <Grid mt={12} mr={8}>
-                  <Heading color='white' fontSize='6xl' mb={2}>FOOD WASTE, A WORLDWIDE ISSUE</Heading>
-                  <Text fontSize='3xl' color='#49ada1' align='start' mr={16} mt={4}>AN UNKNOWN REALITY</Text>
-                  <Text fontSize='2xl'color='white' mt={16}>Each year, more than one third of food produced in the world goes to waste, and it is responsible for 10% of all greenhouse gas emissions. We are on a mission to change that - are you with us ?</Text>
-                </Grid>
-                <Center ml={16} maxWidth='100%' pr={8}>
-                  <Image src={globe1}  boxSize='lg' objectFit='contain'  />
-                </Center>
-              </Flex>
-            </Container>
+              </Box>
+              <Box >
+                <Image  boxSize={['sm','sm','lg',"lg" ]}  objectFit='cover' src={organic} alt="organic food and people" loading="lazy"  />
+              </Box>
+          </Flex>
+
+          
+            <Flex  bg='#114d4d' minH='85vh' mt={20} align='center' justify='center'>
+                <Flex mt={12}   maxW='80%'  direction={['column', 'column', 'column', 'row']} >
+                  <Box mt={4} maxW={['full', 'full', '50%','50%']} >
+                    <Heading color='white' fontSize={['3xl', '3xl','4xl','6xl']} mb={2}>FOOD WASTE, A WORLDWIDE ISSUE</Heading>
+                    <Text fontSize={['lg','lg','xl','3xl']} color='#49ada1' align='start' mt={4}>AN UNKNOWN REALITY</Text>
+                    <Text fontSize={['lg','lg','xl','2xl']}color='white' mt={16}>Each year, more than one third of food produced in the world goes to waste, and it is responsible for 10% of all greenhouse gas emissions. We are on a mission to change that - are you with us ?</Text>
+                  </Box>
+                  <Box>
+                    <Center>
+                     <Image src={globe1}  boxSize={['sm','sm','md','lg']} objectFit='contain'  />
+                     </Center>
+                   </Box>
+                </Flex>
+            </Flex>
+
+
             <Container maxW='container.lg' mb={20}>
               <Grid mt={12} placeItems='center'>
                 <Heading color='#114d4d' mt={8} fontSize='5xl'>COME FIGHT FOOD WASTE WITH US</Heading>
@@ -62,12 +64,14 @@ function Home() {
                 <Text color='#114d4d' mt={12} fontSize='xl'>We dream of a planet with no food waste, and every day we’re working on making that a reality. Our app is the most direct way for you to get involved - just download, log on, and get saving perfectly good, surplus food from your local stores. It’s always a surprise, at a great price, and an instant good deed for the planet. Get started now!</Text>
               </Grid>
             </Container>
-            <Grid templateColumns='repeat(2, 1fr)' gap='2' mt={18} placeItems='center'>
-              <GridItem>
-                <Image src={bagandfood} boxSize='sm' objectFit='fit'/>
-              </GridItem>
-              <GridItem>
-                <Heading color='#114d4d' mt={8} fontSize='5xl'>CREATING REAL CHANGE</Heading>
+
+
+            <Flex align='center' justify='center' flexDir={['column','column','row','row']}>
+              <Container ml={3} centerContent>
+                <Image src={bagandfood} boxSize={['xs','sm','sm','sm']} objectFit='cover'/>
+                </Container >
+              <Container ml={3} >
+                <Heading color='#114d4d' align={['center','center','start','start']} mt={8} fontSize='5xl'>CREATING REAL CHANGE</Heading>
                 <Heading color='#49ada1' mt={8}>WE'RE BUILDING SOMETHING BIG</Heading>
                 <Text color='#114d4d' mt={12} fontSize='xl'>To make a real impact on the issue of food waste, we need to work with public affairs, education, and hand in hand with households and businesses. Discover our many actions here!</Text>
                 <Button
@@ -83,10 +87,12 @@ function Home() {
               >
                 Find stores near you
               </Button>
-              </GridItem>
-            </Grid>
-            <Grid templateColumns='repeat(2, 1fr)' gap='2' placeItems='center' mt={16} mb={12} >
-              <GridItem ml={12}>
+              </Container>
+            </Flex>
+
+
+            <Flex align='center' justify='center' mb={12} mt={12} flexDir={['column','column','row','row']}>
+              <Container ml={[2,4,10,12]} >
                 <Heading color='#114d4d' mt={8} fontSize='5xl'>WORK WITH YOUR VALUES</Heading>
                 <Heading color='#49ada1' mt={8}>WE’RE LOOKING FOR NEW TALENT!</Heading>
                 <Text color='#114d4d' mt={12} fontSize='xl'>Our team is always growing and we need passionate people, in all fields. Whether it’s sales, public affairs...or food waste education, check out our open positions here.</Text>
@@ -103,14 +109,12 @@ function Home() {
               >
                 Register your business
               </Button>
-              </GridItem>
-              <GridItem>
+              </Container>
+              <Container centerContent>
                 <Image src={trashbin} boxSize='sm' objectFit='cover' />
-              </GridItem>
-            </Grid>
-        </Box>
-      </Grid>
-    </Container>
+              </Container>
+            </Flex>
+    </Box>
   );
 }
 

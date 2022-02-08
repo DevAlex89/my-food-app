@@ -38,6 +38,7 @@ function BusinessRegister() {
   const [newMail, setNewMail] = useState('');
   const passwordRef = useRef()
   const confirmPasswordRef = useRef()
+  const foodTypeRef = useRef()
   const [error, setError] = useState('')
 
 
@@ -70,6 +71,7 @@ function BusinessRegister() {
         Adress: address,
         Name: newName,
         Email: newMail,
+        FoodType: foodTypeRef.current.value,
         coordinates: new firebase.firestore.GeoPoint(coordinates.lat, coordinates.lng),
         FoodBags: newBags
 
@@ -78,6 +80,7 @@ function BusinessRegister() {
         Adress: address,
         Name: newName,
         User: user.user.uid,
+        FoodType: foodTypeRef.current.value,
         FoodBags: newBags,
         Email: newMail,
         // The coordinates field must be a GeoPoint!
@@ -87,6 +90,7 @@ function BusinessRegister() {
     } catch {
       setError('Failed to create an account')
     }
+    navigate('/BusinessLogin')
     
   }
   
@@ -193,6 +197,14 @@ function BusinessRegister() {
             required
             placeholder="Re-type password"
           />
+          <FormLabel color="#114d4d"> Type of goods</FormLabel>
+          <Input
+            focusBorderColor="#114d4d"
+            ref={foodTypeRef}
+            type="text"
+            required
+            placeholder="e.x Baked goods, Bread, Pizza etc"
+          />
 
           <FormLabel color="#114d4d">Available Food Bags</FormLabel>
           <Input
@@ -219,7 +231,7 @@ function BusinessRegister() {
           </Button>
       <Flex mt={5}>
           <Box mr={3}> Already have an account? </Box> 
-          <Link to="/BusinessLogin" color='#49ada1'>Log In</Link>
+          <Link href="/BusinessLogin" color='#49ada1'>Log In</Link>
        </Flex>
         </FormControl>
       </Container>

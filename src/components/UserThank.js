@@ -13,7 +13,7 @@ const UserThank = () => {
       bg="white"
       overflow="hidden"
     >
-      <Image src={happymeal} boxSize='md'/>
+      <Image src={happymeal} boxSize='md' objectFit='cover'/>
       <Heading mt={8} color="#114d4d">
         Thank you for using FritterNot!!
       </Heading>
