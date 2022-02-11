@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider,theme } from '@chakra-ui/react';
+import { ChakraProvider,theme ,extendTheme, color } from '@chakra-ui/react';
 import {BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import  {UseAuthContextProvider}  from "./contexts/AuthContext"
 import Home from './components/Home'
@@ -11,12 +11,19 @@ import  BusinessRegister  from './components/BusinessRegister';
 import Dashboard from './components/Dashboard';
 import Footer from './components/Footer';
 
+const config = {
+  useSystemColorMode: false,
+  initialColorMode: "light",
+} 
+
+const customTheme = extendTheme({ config })
+
 
 
 function App() {
   
   return (
-    <ChakraProvider theme={theme}>
+    <ChakraProvider theme={customTheme}>
       <Router>
         <UseAuthContextProvider>
           <Navbar />

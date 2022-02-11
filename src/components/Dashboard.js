@@ -72,7 +72,7 @@ const Dashboard = () => {
 
 
     return(
-        <Container centerContent>
+        <Container centerContent bg={'white'}>
             <Heading mb={8}  color="#114d4d">Dashboard</Heading>
             {error && <Alert status="error">{error}</Alert>}
             {message && <Alert status="success">{message}</Alert>}

@@ -54,8 +54,8 @@ const BusinessLogin = () => {
   
 
   return (
-    <Container>
-      <Heading align='center' color='#114d4d' >Log In</Heading>
+    <Container minH='76vh'>
+      <Heading align='center' color='#114d4d' mt={5} >Log In</Heading>
       {error && <Alert status="error">{error}</Alert>}
       <FormControl  >
         <FormLabel color='#114d4d'>Email</FormLabel>

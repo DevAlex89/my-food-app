@@ -92,7 +92,7 @@ const UserLogIn = () => {
   };
 
   return (
-    <Box overflow="hidden" bg="white" maxW="full" minH="100vh" centerContent>
+    <Box  bg="white" maxW="full" minH="76vh" centerContent >
       <Container maxW="container.lg" mt={12} centerContent>
         <Heading color="#114d4d" mb={4}>
           Find Goodies Near You
@@ -196,7 +196,8 @@ const UserLogIn = () => {
           </Container>
         ) : (
           <Text mt={5} color="#49ada1">
-            Click the search button to see the shops near you
+            Use the left navigator icon to get your location via gps or type your address.
+            Then use the search button to find stores near you!
           </Text>
         )}
       </Container>

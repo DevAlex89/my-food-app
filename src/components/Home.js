@@ -21,23 +21,23 @@ function Home() {
   let navigate = useNavigate();
   return (
     <Box bg="white" maxW="full"  mt={8}>
-          <Flex align='center' justify='center' flexDir={['column','column','row','row']}>
-              <Box mr={8}   mt={16} w={['100%','100%','50%','50%']}>
-                <Heading align="center" fontSize="6xl" color="#114d4d">
+          <Flex align='center' justify='space-evenly' flexDir={['column','column','row','row']} w='full'>
+              <Container    mt={16} w={['100%','100%','50%','50%']} centerContent>
+                <Heading align="start" fontSize="6xl" color="#114d4d">
                   FritterNot
                 </Heading>
                 <Heading color='#49ada1' align='center' mb={14}>Why waste fine food?</Heading>
-                <Text align="center" ml={[5,5,0,0]} fontSize={['md','md','xl',"xl"]}  color="green.900" >
+                <Text align="center" ml={[5,5,0,0]} fontSize={['md','md','xl',"xl"]} w={['80%','80%','70%','70%']} color="green.900" >
                   We dream of a planet with no food waste, and every day we’re
                   working on making that a reality. Log on, and get saving
                   perfectly good, surplus food from your local stores. It’s always
                   a surprise, at a great price, and an instant good deed for the
                   planet. Get started now!
                 </Text>
-              </Box>
-              <Box >
-                <Image  boxSize={['sm','sm','lg',"lg" ]}  objectFit='cover' src={organic} alt="organic food and people" loading="lazy"  />
-              </Box>
+              </Container>
+              <Container  w='100%' centerContent>
+                <Image  boxSize={['sm','sm','lg',"xl" ]}  objectFit='cover' src={organic} alt="organic food and people" loading="lazy"  />
+              </Container>
           </Flex>
 
           
