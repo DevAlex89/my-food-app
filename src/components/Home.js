@@ -24,7 +24,7 @@ function Home() {
           <Flex align='center' justify='space-evenly' flexDir={['column','column','row','row']} w='full'>
               <Container    mt={16} w={['100%','100%','50%','50%']} centerContent>
                 <Heading align="start" fontSize="6xl" color="#114d4d">
-                  FritterNot
+                  Fritternot
                 </Heading>
                 <Heading color='#49ada1' align='center' mb={14}>Why waste fine food?</Heading>
                 <Text align="center" ml={[5,5,0,0]} fontSize={['md','md','xl',"xl"]} w={['80%','80%','70%','70%']} color="green.900" >
