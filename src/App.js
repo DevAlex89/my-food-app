@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import  {UseAuthContextProvider}  from "./contexts/AuthContext"
 import Home from './components/Home'
 import UserLogIn from './components/UserLogIn';
-import BusinessLogin from './components/BusinessLogin';
+import BusinessLogin from './components/BusinessLogIn';
 import UserThank from './components/UserThank';
 import  Navbar  from './components/Navbar';
 import  BusinessRegister  from './components/BusinessRegister';
