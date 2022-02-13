@@ -62,7 +62,7 @@ const Navbar = () => {
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
             onClick={() => {
-              navigate('/');
+              navigate('/About');
             }}
           >
             About
@@ -148,7 +148,7 @@ const Navbar = () => {
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
             onClick={() => {
-              navigate('/');
+              navigate('/About');
             }}
           >
             About

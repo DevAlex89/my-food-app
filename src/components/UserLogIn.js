@@ -94,8 +94,8 @@ const UserLogIn = () => {
   return (
     <Box  bg="white" maxW="full" minH="76vh" centerContent >
       <Container maxW="container.lg" mt={12} centerContent>
-        <Heading color="#114d4d" mb={4}>
-          Find Goodies Near You
+        <Heading color="#114d4d" mb={4} align='center'>
+          Find fine food near you
         </Heading>
         <Container>
           <PlacesAutocomplete
@@ -195,9 +195,8 @@ const UserLogIn = () => {
             </Grid>
           </Container>
         ) : (
-          <Text mt={5} color="#49ada1">
-            Use the left navigator icon to get your location via gps or type your address.
-            Then use the search button to find stores near you!
+          <Text mt={5} color="#49ada1" align='center'>
+            Click the left navigator button to automatically enter your location via GPS, or type in your address and press the right search button to reveal the Fritternot partners nearest to you!
           </Text>
         )}
       </Container>

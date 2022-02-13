@@ -28,11 +28,7 @@ function Home() {
                 </Heading>
                 <Heading color='#49ada1' align='center' mb={14}>Why waste fine food?</Heading>
                 <Text align="center" ml={[5,5,0,0]} fontSize={['md','md','xl',"xl"]} w={['80%','80%','70%','70%']} color="green.900" >
-                  We dream of a planet with no food waste, and every day we’re
-                  working on making that a reality. Log on, and get saving
-                  perfectly good, surplus food from your local stores. It’s always
-                  a surprise, at a great price, and an instant good deed for the
-                  planet. Get started now!
+                Each day and every day, your favourite stores, eateries, and producers are forced to throw out fine food just because it didn’t sell in time. Fritternot lets you buy and collect surprise bags of this food at great prices. This means more gets eaten and less gets wasted, which is good for the planet and good for your pocket. What’s not to love?
                 </Text>
               </Container>
               <Container  w='100%' centerContent>
@@ -44,9 +40,11 @@ function Home() {
             <Flex  bg='#114d4d' minH='85vh' mt={20} align='center' justify='center'>
                 <Flex mt={12}   maxW='80%'  direction={['column', 'column', 'column', 'row']} >
                   <Box mt={4} maxW={['full', 'full', '50%','50%']} >
-                    <Heading color='white' fontSize={['3xl', '3xl','4xl','6xl']} mb={2}>FOOD WASTE, A WORLDWIDE ISSUE</Heading>
-                    <Text fontSize={['lg','lg','xl','3xl']} color='#49ada1' align='start' mt={4}>AN UNKNOWN REALITY</Text>
-                    <Text fontSize={['lg','lg','xl','2xl']}color='white' mt={16}>Each year, more than one third of food produced in the world goes to waste, and it is responsible for 10% of all greenhouse gas emissions. We are on a mission to change that - are you with us ?</Text>
+                    <Heading color='white' fontSize={['3xl', '3xl','4xl','6xl']} mb={2}>FOOD IS BEING WASTED
+                       AROUND THE WORLD
+                    </Heading>
+                    <Text fontSize={['lg','lg','xl','3xl']} color='#49ada1' align='start' mt={4}>FACTS BEYOND BELIEF</Text>
+                    <Text fontSize={['lg','lg','xl','2xl']}color='white' mt={16}>Did you know that more than a third of all the world’s food gets thrown away? And the impact is huge – 10% of all greenhouse gas emissions are due to food loss and waste. Fritternot wants to be part of the solution, and you can be part of it with us.</Text>
                   </Box>
                   <Box>
                     <Center>
@@ -59,9 +57,9 @@ function Home() {
 
             <Container maxW='container.lg' mb={20}>
               <Grid mt={12} placeItems='center'>
-                <Heading color='#114d4d' mt={8} fontSize='5xl'>COME FIGHT FOOD WASTE WITH US</Heading>
-                <Heading color='#49ada1' mt={8}>THE PLANET NEEDS YOU!</Heading>
-                <Text color='#114d4d' mt={12} fontSize='xl'>We dream of a planet with no food waste, and every day we’re working on making that a reality. Our app is the most direct way for you to get involved - just download, log on, and get saving perfectly good, surplus food from your local stores. It’s always a surprise, at a great price, and an instant good deed for the planet. Get started now!</Text>
+                <Heading color='#114d4d' mt={8} fontSize='5xl'>JOIN THE FIGHT AGAINST FOOD WASTE</Heading>
+                <Heading color='#49ada1' mt={8}>FOR THE GOOD OF THE PLANET!</Heading>
+                <Text color='#114d4d' mt={12} fontSize='xl'>Want to make a difference? Just download the Fritternot app, log on, and start saving surplus food from your favourite stores, eateries, and producers today. What’s in the bag you’re buying? Well, it’s a surprise – you only know what you’re getting when you pick it up – but we guarantee the food will always be excellent quality and great value. Plus, it’s good for planet Earth. What a win-win-win situation!</Text>
               </Grid>
             </Container>
 
@@ -71,9 +69,11 @@ function Home() {
                 <Image src={bagandfood} boxSize={['xs','sm','sm','sm']} objectFit='cover'/>
                 </Container >
               <Container ml={3} >
-                <Heading color='#114d4d' align={['center','center','start','start']} mt={8} fontSize='5xl'>CREATING REAL CHANGE</Heading>
-                <Heading color='#49ada1' mt={8}>WE'RE BUILDING SOMETHING BIG</Heading>
-                <Text color='#114d4d' mt={12} fontSize='xl'>To make a real impact on the issue of food waste, we need to work with public affairs, education, and hand in hand with households and businesses. Discover our many actions here!</Text>
+                <Heading color='#114d4d' align={['center','center','start','start']} mt={8} fontSize='5xl'>FRITTERNOT ISN’T JUST AN APP
+                   – IT’S A MOVEMENT
+                </Heading>
+                <Heading color='#49ada1' mt={8}>MAKING REAL CHANGE HAPPEN</Heading>
+                <Text color='#114d4d' mt={12} fontSize='xl'>Here at Fritternot, we’re serious about fighting food waste. Beyond our app, we also have a dedicated team whose job it is to engage with schools, businesses, and public bodies to raise awareness and effect change. Let’s do this!</Text>
                 <Button
                 mt="4"
                 color="#114d4d"
@@ -93,9 +93,11 @@ function Home() {
 
             <Flex align='center' justify='center' mb={12} mt={12} flexDir={['column','column','row','row']}>
               <Container ml={[2,4,10,12]} >
-                <Heading color='#114d4d' mt={8} fontSize='5xl'>WORK WITH YOUR VALUES</Heading>
-                <Heading color='#49ada1' mt={8}>WE’RE LOOKING FOR NEW TALENT!</Heading>
-                <Text color='#114d4d' mt={12} fontSize='xl'>Our team is always growing and we need passionate people, in all fields. Whether it’s sales, public affairs...or food waste education, check out our open positions here.</Text>
+                <Heading color='#114d4d' mt={8} fontSize='5xl'>HAVE SURPLUS FOOD
+                  YOU WANT SAVED?
+                </Heading>
+                <Heading color='#49ada1' mt={8}>JOIN FORCES WITH FRITTERNOT!</Heading>
+                <Text color='#114d4d' mt={12} fontSize='xl'>We’re always looking for new partners in the fight against food waste. If you have a business with surplus food, it’s time to stop throwing it away. We can connect you with new customers and help you save costs. Resister with us today!</Text>
                 <Button
                 mt="4"
                 color="#114d4d"

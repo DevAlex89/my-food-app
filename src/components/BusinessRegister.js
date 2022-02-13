@@ -113,13 +113,11 @@ function BusinessRegister() {
       >
         <Box>
           <Heading color="#114d4d" align="center" mt={4} mb={4}>
-            Sign up your business and save food waste
+              Sign up your business and help stop food waste
           </Heading>
           {error && <Alert status='error'>{error}</Alert>}
           <Text color="green.900" mb={8} align="center">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
-            rerum nesciunt similique eveniet ipsam! Earum quaerat accusamus ab
-            modi hic.
+            We’re always looking for new partners in the fight against food waste. If you have a business with surplus food, it’s time to stop throwing it away. We can connect you with new customers and help you save costs. Register with us today!
           </Text>
         </Box>
 
@@ -163,7 +161,7 @@ function BusinessRegister() {
           <Input
             focusBorderColor="#114d4d"
             type="text"
-            placeholder="Brand name"
+            placeholder="Business name"
             value={newName}
             onChange={e => {
               setNewName(e.target.value);
@@ -203,7 +201,7 @@ function BusinessRegister() {
             ref={foodTypeRef}
             type="text"
             required
-            placeholder="e.x Baked goods, Bread, Pizza etc"
+            placeholder="e.g. baked goods, fresh produce, cooked meals, etc."
           />
 
           <FormLabel color="#114d4d">Available Food Bags</FormLabel>

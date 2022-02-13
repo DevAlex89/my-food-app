@@ -9,6 +9,7 @@ import UserThank from './components/UserThank';
 import  Navbar  from './components/Navbar';
 import  BusinessRegister  from './components/BusinessRegister';
 import Dashboard from './components/Dashboard';
+import About from './components/About';
 import Footer from './components/Footer';
 
 const config = {
@@ -34,6 +35,7 @@ function App() {
             <Route path='/userThank' element={<UserThank/>} />
             <Route path='/BusinessRegister' element={<BusinessRegister/>} />
             <Route path='/Dashboard' element={<Dashboard/>} />
+            <Route path='/About' element={<About/>} />
           </Routes>
           <Footer />
         </UseAuthContextProvider>
