@@ -37,6 +37,8 @@ const Navbar = () => {
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
+            _focus={{ bg: '#114d4d', color: 'white' }}
+
             onClick={() => {
               navigate('/UserLogIn');
             }}
@@ -49,6 +51,8 @@ const Navbar = () => {
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
+            _focus={{ bg: '#114d4d', color: 'white' }}
+
             onClick={() => {
               navigate('/BusinessRegister');
             }}
@@ -61,6 +65,8 @@ const Navbar = () => {
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
+            _focus={{ bg: '#114d4d', color: 'white' }}
+
             onClick={() => {
               navigate('/About');
             }}
