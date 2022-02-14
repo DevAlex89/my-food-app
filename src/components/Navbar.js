@@ -16,6 +16,23 @@ import { MdClose } from 'react-icons/md';
 const Navbar = () => {
   let navigate = useNavigate();
   const [dis, setDis] = useState('none');
+
+  const closeMenuFind = () => {
+    setDis('none');
+    navigate('/UserLogIn')
+  };
+  const closeMenuSign = () => {
+    setDis('none');
+    navigate('/BusinessRegister')
+  };
+  const closeMenuAbout = () => {
+    setDis('none');
+    navigate('/About')
+  };
+  const closeMenuLogin = () => {
+    setDis('none');
+    navigate('/BusinessLogIn')
+  };
   return (
     <Container maxW="100%" centerContent mt={4} overflow="hidden" bg={'white'}>
       <Flex w="80%" align="center" ml={10}>
@@ -38,7 +55,6 @@ const Navbar = () => {
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
             _focus={{ bg: '#114d4d', color: 'white' }}
-
             onClick={() => {
               navigate('/UserLogIn');
             }}
@@ -52,7 +68,6 @@ const Navbar = () => {
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
             _focus={{ bg: '#114d4d', color: 'white' }}
-
             onClick={() => {
               navigate('/BusinessRegister');
             }}
@@ -66,7 +81,6 @@ const Navbar = () => {
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
             _focus={{ bg: '#114d4d', color: 'white' }}
-
             onClick={() => {
               navigate('/About');
             }}
@@ -75,7 +89,7 @@ const Navbar = () => {
           </Button>
           <Button
             mr={3}
-            border='1px solid'
+            border="1px solid"
             color="#114d4d"
             variant="ghost"
             borderColor="#114d4d"
@@ -129,9 +143,7 @@ const Navbar = () => {
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
-            onClick={() => {
-              navigate('/UserLogIn');
-            }}
+            onClick={closeMenuFind }
           >
             Find stores near you
           </Button>
@@ -141,9 +153,7 @@ const Navbar = () => {
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
-            onClick={() => {
-              navigate('/BusinessRegister');
-            }}
+            onClick= {closeMenuSign}
           >
             Sign up your business
           </Button>
@@ -153,9 +163,7 @@ const Navbar = () => {
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
-            onClick={() => {
-              navigate('/About');
-            }}
+            onClick={closeMenuAbout}
           >
             About
           </Button>
@@ -170,9 +178,7 @@ const Navbar = () => {
               transform: 'scale(0.98)',
               borderColor: '#bec3c9',
             }}
-            onClick={() => {
-              navigate('/BusinessLogin');
-            }}
+            onClick={closeMenuLogin}
           >
             Log In
           </Button>
