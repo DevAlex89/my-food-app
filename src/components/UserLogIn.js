@@ -65,7 +65,7 @@ const UserLogIn = () => {
         userPosition.lat,
         userPosition.lng
       ),
-      radius: 1000,
+      radius: 8,
     });
     query.get().then(value => {
       // All GeoDocument returned by GeoQuery, like the GeoDocument added above
@@ -92,9 +92,9 @@ const UserLogIn = () => {
   };
 
   return (
-    <Box  bg="white" maxW="full" minH="76vh" centerContent >
+    <Box bg="white" maxW="full" minH="76vh" centerContent>
       <Container maxW="container.lg" mt={12} centerContent>
-        <Heading color="#114d4d" mb={4} align='center'>
+        <Heading color="#114d4d" mb={4} align="center">
           Find fine food near you
         </Heading>
         <Container>
@@ -173,7 +173,8 @@ const UserLogIn = () => {
                   <Text fontSize="xl" key={element.id}>
                     {element.Adress}
                   </Text>
-                  <Text fontSize="xl" key={element.id}>Type:  
+                  <Text fontSize="xl" key={element.id}>
+                    Type:
                     {element.FoodType}
                   </Text>
                   <Text fontSize="xl" color="#49ada1" mt={3} key={element.id}>
@@ -195,8 +196,10 @@ const UserLogIn = () => {
             </Grid>
           </Container>
         ) : (
-          <Text mt={5} color="#49ada1" align='center'>
-            Click the left navigator button to automatically enter your location via GPS, or type in your address and press the right search button to reveal the Fritternot partners nearest to you!
+          <Text mt={5} color="#49ada1" align="center">
+            Click the left navigator button to automatically enter your location
+            via GPS, or type in your address and press the right search button
+            to reveal the Fritternot partners nearest to you!
           </Text>
         )}
       </Container>
