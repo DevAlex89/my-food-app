@@ -72,7 +72,7 @@ const Dashboard = () => {
 
 
     return(
-        <Container centerContent bg={'white'}>
+        <Container centerContent bg={'white'} minH='76vh' mt={5}>
             <Heading mb={8}  color="#114d4d">Dashboard</Heading>
             {error && <Alert status="error">{error}</Alert>}
             {message && <Alert status="success">{message}</Alert>}
@@ -81,7 +81,7 @@ const Dashboard = () => {
             <Heading color="#114d4d" size='lg' mb={2}>Email</Heading> <Text mb={4} fontSize='xl' color="#114d4d">{data.Email}</Text>
             <Heading color="#114d4d" size='lg' mb={2}>Available bags of food</Heading> <Text mb={4} fontSize='xl' color="#114d4d">{data.FoodBags}</Text>
             <Input focusBorderColor="#114d4d" type='number' mb={4} w='50%' placeholder="New amount of food bags" ref={bagRef}/>
-            <Flex>
+            <Flex mb={[12,12,8,8]}>
                 <Button 
                 mr={4} 
                 color="#114d4d"
