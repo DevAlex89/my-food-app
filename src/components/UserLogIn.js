@@ -65,7 +65,7 @@ const UserLogIn = () => {
         userPosition.lat,
         userPosition.lng
       ),
-      radius: 8,
+      radius: 5,
     });
     query.get().then(value => {
       // All GeoDocument returned by GeoQuery, like the GeoDocument added above
