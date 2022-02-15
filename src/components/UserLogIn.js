@@ -9,6 +9,7 @@ import {
   InputLeftElement,
   Grid,
   GridItem,
+  position,
 } from '@chakra-ui/react';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsSearch } from 'react-icons/bs';
@@ -16,6 +17,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlacesAutocomplete, {
   geocodeByAddress,
+  geocodeByPlaceId,
   getLatLng,
 } from 'react-places-autocomplete';
 import { firebaseConfig } from './firebase-config';
@@ -38,15 +40,33 @@ const UserLogIn = () => {
   const GeoFirestore = geofirestore.initializeApp(firestore);
   const geocollection = GeoFirestore.collection('shopsLocation');
 
+
+  // reverse geocode
+  const reverseGeocode = (lat,lng) => {
+    let key=process.env.GEOCODE_API
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`)
+    .then(response => response.json())
+    .then(data =>{
+      setAddress(data.results[0].formatted_address)
+    })
+  }
+
   // get user coordinators using navigator
-  const trackUser = () => {
+  const trackUser = async () => {
+    try{
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log(position.coords);
+      console.log(position);
+      setAddress(position.address)
       setUserPosition({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
+       reverseGeocode(position.coords.latitude, position.coords.longitude)
     });
+   }catch(err){
+     console.log(err.message)
+   }
+
   };
 
   // autocomplete address for user
