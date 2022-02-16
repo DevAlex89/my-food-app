@@ -1,5 +1,5 @@
 import React from 'react';
-import { ChakraProvider,theme ,extendTheme, color } from '@chakra-ui/react';
+import { ChakraProvider ,extendTheme } from '@chakra-ui/react';
 import {BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import  {UseAuthContextProvider}  from "./contexts/AuthContext"
 import Home from './Pages/Home'
