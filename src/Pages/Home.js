@@ -50,7 +50,7 @@ function Home() {
                   </Box>
                   <Box>
                     <Center>
-                     <Image src={globe1}  boxSize={['sm','sm','md','lg']} objectFit='contain'  />
+                     <Image src={globe1}  boxSize={['sm','sm','md','lg']} objectFit='contain'  alt='the globe' />
                      </Center>
                    </Box>
                 </Flex>
@@ -68,7 +68,7 @@ function Home() {
 
             <Flex align='center' justify='center' flexDir={['column','column','row','row']}>
               <Container ml={3} centerContent>
-                <Image src={bagandfood} boxSize={['xs','sm','sm','sm']} objectFit='cover'/>
+                <Image src={bagandfood} boxSize={['xs','sm','sm','sm']} objectFit='cover' alt='illustration of a bag with food' loading='lazy'/>
                 </Container >
               <Container ml={3} >
                 <Heading color='#114d4d' align={['center','center','start','start']} mt={8} fontSize='5xl'>FRITTERNOT ISN’T JUST AN APP
@@ -115,7 +115,7 @@ function Home() {
               </Button>
               </Container>
               <Container centerContent>
-                <Image src={trashbin} boxSize='sm' objectFit='cover' />
+                <Image src={trashbin} boxSize='sm' objectFit='cover' alt='ilustration of man recycling' loading='lazy'/>
               </Container>
             </Flex>
     </Box>

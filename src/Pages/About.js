@@ -13,7 +13,7 @@ const About = () => {
       bg="white"
       overflow="hidden"
     >
-         <Image src={Foodtrashset} boxSize='md' objectFit='cover'/>
+         <Image src={Foodtrashset} boxSize='md' objectFit='cover' alt='wasted food illustration'/>
         <Heading align="start" fontSize="6xl" color="#114d4d">
                   Fritternot
         </Heading>
