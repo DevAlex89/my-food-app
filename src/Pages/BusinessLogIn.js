@@ -22,7 +22,7 @@ const BusinessLogin = () => {
   const passwordRef = useRef()
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
-  const {login, forgotPassword} = useAuthContext()
+  const {login, forgotPassword, setLocal} = useAuthContext()
   const [message, setMessage] = useState('')
   
   
@@ -37,6 +37,9 @@ const BusinessLogin = () => {
         if (emailRef && passwordRef)
         await login( emailRef.current.value, passwordRef.current.value)
         .then ((userCred)=>{
+          
+          setLocal()
+
           navigate('/Dashboard')
         })
         setLoading(false)

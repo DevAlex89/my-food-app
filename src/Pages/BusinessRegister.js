@@ -20,9 +20,9 @@ import PlacesAutocomplete, {
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
-import {auth } from './firebase-config'
+import {auth } from '../components/firebase-config'
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { db, firebaseConfig } from './firebase-config';
+import { db, firebaseConfig } from '../components/firebase-config';
 import { collection, setDoc, doc } from 'firebase/firestore';
 import * as geofirestore from 'geofirestore';
 

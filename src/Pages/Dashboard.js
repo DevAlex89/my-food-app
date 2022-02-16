@@ -6,13 +6,10 @@ import {
   Heading,
   Input,
   Text,
-  Box,
-  Link,
-  Spacer,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { db } from './firebase-config';
+import { db } from '../components/firebase-config';
 import { useAuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,26 +21,31 @@ const Dashboard = () => {
   const [message, setMessage] = useState('');
   const bagRef = useRef();
 
-  const docRef = doc(db, 'shops', currentUser.uid);
-  const geoDocRef = doc(db, 'shopsLocation', currentUser.uid);
 
-  useEffect(() => {
-    if (currentUser) {
-      userData();
-    } else {
-      navigate('/BusinessLogin');
+//the database refs
+const docRef = doc(db, 'shops', currentUser.uid);
+const geoDocRef = doc(db, 'shopsLocation', currentUser.uid);
+
+useEffect(() => {
+  const abortController = new AbortController()
+  void async function userData(){
+    try{
+        const docSnap = await getDoc(docRef)
+        setData(docSnap.data())
+      }catch(err){
+        console.log(err.message)
+      }
+    
+    }();
+  
+    return ()=> {
+      abortController.abort();
     }
+  
+    
   }, []);
 
-  const userData = async () => {
-    const docSnap = await getDoc(docRef);
-    if (docSnap.exists()) {
-      setData(docSnap.data());
-    } else {
-      setError('No such document!');
-    }
-  };
-
+  
   const updateDocs = async () => {
     setError('');
     try {

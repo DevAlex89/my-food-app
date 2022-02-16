@@ -4,9 +4,12 @@ import {
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
-  deleteUser
+  deleteUser,
+  browserSessionPersistence,
+  setPersistence
 } from "firebase/auth";
 import  {auth}  from "../components/firebase-config"
+
 
 
 
@@ -55,6 +58,9 @@ export const useAuthContext = () => {
       deleteUser(currentUser)
     }
 
+   const setLocal = () => {
+     setPersistence(auth, browserSessionPersistence)
+   }
 
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
@@ -71,7 +77,8 @@ export const useAuthContext = () => {
       login,
       forgotPassword,
       logoutUser,
-      deleteAccount
+      deleteAccount,
+      setLocal
 
     }
   

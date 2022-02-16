@@ -17,15 +17,14 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  geocodeByPlaceId,
   getLatLng,
 } from 'react-places-autocomplete';
-import { firebaseConfig } from './firebase-config';
+import { firebaseConfig } from '../components/firebase-config';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import * as geofirestore from 'geofirestore';
-import { signInWithGmail } from './firebase-config';
+import { signInWithGmail } from '../components/firebase-config';
 
 
 const UserLogIn = () => {
@@ -33,7 +32,6 @@ const UserLogIn = () => {
   const [userPosition, setUserPosition] = useState({ lat: null, lng: null });
   const [shopList, setShopList] = useState([]);
   const [address, setAddress] = useState('');
-  const [userEmail, setUserEmail] = useState('');
   const [message, setMessage] = useState('')
 
   
@@ -47,8 +45,7 @@ const UserLogIn = () => {
 
   // reverse geocode
   const reverseGeocode = (lat,lng) => {
-    let key='AIzaSyCbyL8vkXfIjhg-ADKvz1QFN7pcdk2pwIg'
-    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${key}`)
+    fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GEOCODE}`)
     .then(response => response.json())
     .then(data =>{
       setAddress(data.results[0].formatted_address)
@@ -115,10 +112,7 @@ const UserLogIn = () => {
   // Sign in user
   const signInUser = async () => {
     try {
-      const userData = await signInWithGmail();
-      setUserEmail(userData.user.email);
-      console.log(userData.user.email);
-
+      await signInWithGmail();
       navigate('/UserThank');
     } catch (error) {
       alert(error.message);

@@ -2,15 +2,16 @@ import React from 'react';
 import { ChakraProvider,theme ,extendTheme, color } from '@chakra-ui/react';
 import {BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import  {UseAuthContextProvider}  from "./contexts/AuthContext"
-import Home from './components/Home'
-import UserLogIn from './components/UserLogIn';
-import BusinessLogin from './components/BusinessLogIn';
-import UserThank from './components/UserThank';
+import Home from './Pages/Home'
+import UserLogIn from './Pages/UserLogIn';
+import BusinessLogin from './Pages/BusinessLogIn';
+import UserThank from './Pages/UserThank';
 import  Navbar  from './components/Navbar';
-import  BusinessRegister  from './components/BusinessRegister';
-import Dashboard from './components/Dashboard';
-import About from './components/About';
+import  BusinessRegister  from './Pages/BusinessRegister';
+import Dashboard from './Pages/Dashboard';
+import About from './Pages/About';
 import Footer from './components/Footer';
+import PrivateRoute from './components/PrivateRoute';
 
 const config = {
   useSystemColorMode: false,
@@ -29,12 +30,14 @@ function App() {
         <UseAuthContextProvider>
           <Navbar />
           <Routes>
-            <Route path='/' element={<Home/>} />
-            <Route path='/UserLogIn' element={<UserLogIn/>} />
-            <Route path='/BusinessLogin' element={<BusinessLogin/>} />
+            <Route exact path='/' element={<Home/>} />
+            <Route exact path='/UserLogIn' element={<UserLogIn/>} />
+            <Route exact path='/BusinessLogin' element={<BusinessLogin/>} />
             <Route path='/userThank' element={<UserThank/>} />
             <Route path='/BusinessRegister' element={<BusinessRegister/>} />
-            <Route path='/Dashboard' element={<Dashboard/>} />
+            <Route element={<PrivateRoute/>}>
+              <Route path='/Dashboard' element={<Dashboard/>} />
+            </Route >
             <Route path='/About' element={<About/>} />
           </Routes>
           <Footer />

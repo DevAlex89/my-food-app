@@ -26,4 +26,4 @@ const gmailProvider = new GoogleAuthProvider();
 const signInWithGmail = () =>signInWithPopup(auth, gmailProvider);
 
 
-export {db , firebaseConfig , auth, signInWithGmail};
+export {db , firebaseConfig , auth, signInWithGmail, app};
