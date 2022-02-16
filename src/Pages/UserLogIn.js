@@ -10,6 +10,7 @@ import {
   Grid,
   GridItem,
   Alert,
+  Spinner
 } from '@chakra-ui/react';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsSearch } from 'react-icons/bs';
@@ -137,7 +138,7 @@ const UserLogIn = () => {
               getSuggestionItemProps,
               loading,
             }) => (
-              <Box centerContent>
+              <Container centerContent>
                 <Container
                   display="flex"
                   align="center"
@@ -171,21 +172,21 @@ const UserLogIn = () => {
                     {<BsSearch />}
                   </Button>
                 </Container>
-                <Box>
-                  {loading ? <Box>Loading..</Box> : null}
+                <Container centerContent maxW={'container.sm'}>
+                  {loading ? <Spinner color='green.300' /> : null}
                   {suggestions.map(suggestion => {
                     const style = {
                       backgroundColor: suggestion.active ? '#49ada1' : 'white',
                       cursor: 'pointer',
                     };
                     return (
-                      <Box {...getSuggestionItemProps(suggestion, { style })}>
+                      <Container centerContent {...getSuggestionItemProps(suggestion, { style })}>
                         {suggestion.description}
-                      </Box>
+                      </Container>
                     );
                   })}
-                </Box>
-              </Box>
+                </Container>
+              </Container>
             )}
           </PlacesAutocomplete>
         </Container>

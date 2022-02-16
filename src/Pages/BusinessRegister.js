@@ -9,7 +9,8 @@ import {
   Text,
   Alert,
   Link,
-  Flex
+  Flex,
+  Spinner
 } from '@chakra-ui/react';
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -83,7 +84,6 @@ function BusinessRegister() {
         FoodType: foodTypeRef.current.value,
         FoodBags: newBags,
         Email: newMail,
-        // The coordinates field must be a GeoPoint!
         coordinates: new firebase.firestore.GeoPoint(coordinates.lat, coordinates.lng)
     })
 
@@ -141,7 +141,7 @@ function BusinessRegister() {
                   {...getInputProps({ placeholder: 'Type your address' })}
                 />
                 <Box>
-                  {loading ? <Box>Loading..</Box> : null}
+                  {loading ? <Spinner color='green.300' /> : null}
                   {suggestions.map(suggestion => {
                     const style = {
                       backgroundColor: suggestion.active ? '#49ada1' : 'white',

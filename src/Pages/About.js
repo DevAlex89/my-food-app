@@ -1,5 +1,5 @@
  import React from 'react'
- import { Container, Heading, Text, Flex, Button, Box, Image} from '@chakra-ui/react';
+ import { Container, Heading, Text, Flex, Button, Box, Image, Link} from '@chakra-ui/react';
  import {useNavigate} from 'react-router-dom'
 import Foodtrashset from '../assets/Foodtrashset.jpg'
 
@@ -32,23 +32,14 @@ const About = () => {
          
       <Flex justifyContent='center' alignItems='center'mt={8} mb={8}>
           <Box mr={5} >
-              <Button 
-               color="#114d4d"
-               variant="ghost"
-               borderColor="#114d4d"
-               border="1px solid"
-               _hover={{ bg: '#114d4d', color: 'white' }}
-               onClick={()=>{navigate('/')}}>Home</Button>
+            <Link href='/' color="#114d4d"  > 
+              <Text fontSize={'lg'} fontWeight='bold'>Home</Text>
+            </Link>
           </Box>
-          <Box ml={5}>
-              <Button 
-               color="#114d4d"
-               variant="ghost"
-               borderColor="#114d4d"
-               border="1px solid"
-               _hover={{ bg: '#114d4d', color: 'white' }}
-               onClick={()=>{navigate('/BusinessRegister')}}
-               >Register your business</Button>
+          <Box ml={8}>
+           <Link href='/BusinessRegister' color="#114d4d"  > 
+              <Text fontSize={'lg'} fontWeight='bold'>Register your business</Text>
+            </Link>
           </Box>
         
        

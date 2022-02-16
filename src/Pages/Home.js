@@ -3,6 +3,7 @@ import organic from '../assets/organic.jpg';
 import globe1 from '../assets/globe1.png'
 import bagandfood from '../assets/bagandfood.png'
 import trashbin from '../assets/trashbin.png'
+import ScrollButton from '../components/ScrollButton'
 
 import {
   Box,
@@ -21,7 +22,8 @@ function Home() {
   let navigate = useNavigate();
   return (
     <Box bg="white" maxW="full"  mt={8}>
-          <Flex align='center' justify='space-evenly' flexDir={['column','column','row','row']} w='full'>
+      <Box pos="fixed" bottom="0" right="0" display={['block','block','block','none']}>{<ScrollButton/>}</Box>
+          <Flex align='center' justify='space-evenly' flexDir={['column','column','column','row']} w='full'>
               <Container    mt={16} w={['100%','100%','50%','50%']} centerContent>
                 <Heading align="start" fontSize="6xl" color="#114d4d">
                   Fritternot
@@ -38,9 +40,9 @@ function Home() {
 
           
             <Flex  bg='#114d4d' minH='85vh' mt={20} align='center' justify='center'>
-                <Flex mt={12}   maxW='80%'  direction={['column', 'column', 'column', 'row']} >
+                <Flex mt={12}   maxW='80%'  direction={['column', 'column', 'row', 'row']} >
                   <Box mt={4} maxW={['full', 'full', '50%','50%']} >
-                    <Heading color='white' fontSize={['3xl', '3xl','4xl','6xl']} mb={2}>FOOD IS BEING WASTED
+                    <Heading color='white' fontSize={['3xl', '3xl','3xl','6xl']} mb={2}>FOOD IS BEING WASTED
                        AROUND THE WORLD
                     </Heading>
                     <Text fontSize={['lg','lg','xl','3xl']} color='#49ada1' align='start' mt={4}>FACTS BEYOND BELIEF</Text>
