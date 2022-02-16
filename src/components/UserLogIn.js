@@ -126,7 +126,7 @@ const UserLogIn = () => {
   };
 
   return (
-    <Box bg="white" maxW="full" minH="76vh" centerContent>
+    <Box bg="white" maxW="full" minH="72vh" centerContent>
       <Container maxW="container.lg" mt={12} centerContent>
         <Heading color="#114d4d" mb={4} align="center">
           Find fine food near you
