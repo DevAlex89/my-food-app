@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signOut,
   sendPasswordResetEmail,
+  deleteUser
 } from "firebase/auth";
 import  {auth}  from "../components/firebase-config"
 
@@ -50,6 +51,10 @@ export const useAuthContext = () => {
       signOut(auth);
     };
 
+    const deleteAccount = () => {
+      deleteUser(currentUser)
+    }
+
 
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
@@ -65,7 +70,8 @@ export const useAuthContext = () => {
       loading,
       login,
       forgotPassword,
-      logoutUser
+      logoutUser,
+      deleteAccount
 
     }
   

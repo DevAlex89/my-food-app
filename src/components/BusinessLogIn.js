@@ -32,18 +32,22 @@ const BusinessLogin = () => {
     e.preventDefault()
       setError('')
       setLoading(true)
-      if (emailRef && passwordRef)
-      await login( emailRef.current.value, passwordRef.current.value)
-      .then ((userCred)=>{
-        navigate('/Dashboard')
-      })
-      setLoading(false)
+      try{
+        if (emailRef && passwordRef)
+        await login( emailRef.current.value, passwordRef.current.value)
+        .then ((userCred)=>{
+          navigate('/Dashboard')
+        })
+        setLoading(false)
+    }catch{
+      setError('Wrong email or password')
+    }
   }
 
   // reset password
   const forgotPasswordHandler = async () => {
     try{
-      if (emailRef.current.value)
+      if (emailRef.current.value) 
       await forgotPassword(emailRef.current.value).then(() => {
         emailRef.current.value = "";
       });
@@ -55,7 +59,7 @@ const BusinessLogin = () => {
 
   return (
     <Container minH='76vh'>
-      <Heading align='center' color='#114d4d' mt={5} >Log In</Heading>
+      <Heading align='center' color='#114d4d' mt={5} mb={2} >Log In</Heading>
       {error && <Alert status="error">{error}</Alert>}
       <FormControl  >
         <FormLabel color='#114d4d'>Email</FormLabel>
