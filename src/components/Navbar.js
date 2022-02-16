@@ -15,7 +15,7 @@ import { MdClose } from 'react-icons/md';
 import { useAuthContext } from '../contexts/AuthContext';
 
 
-const Navbar = (props) => {
+const Navbar = () => {
   let navigate = useNavigate();
   const [dis, setDis] = useState('none');
   const { currentUser, logoutUser} = useAuthContext()
@@ -53,6 +53,10 @@ const Navbar = (props) => {
     setDis('none');
     navigate('/BusinessLogIn')
   };
+  const closeMenuDashboard = () => {
+    setDis('none');
+    navigate('/Dashboard')
+  };
 
 
 
@@ -84,7 +88,23 @@ const Navbar = (props) => {
           >
             Find stores near you
           </Button>
-          <Button
+          {/* conditional rendering of register business / Dashboard */}
+          {!currentUser ? (
+            <Button
+              mr={3}
+              color="#114d4d"
+              variant="ghost"
+              borderColor="#114d4d"
+              _hover={{ bg: '#114d4d', color: 'white' }}
+              _focus={{ bg: '#114d4d', color: 'white' }}
+              onClick={() => {
+                navigate('/BusinessRegister');
+              }}
+            >
+              Sign up your business
+            </Button>
+          ) : (
+            <Button
             mr={3}
             color="#114d4d"
             variant="ghost"
@@ -92,11 +112,13 @@ const Navbar = (props) => {
             _hover={{ bg: '#114d4d', color: 'white' }}
             _focus={{ bg: '#114d4d', color: 'white' }}
             onClick={() => {
-              navigate('/BusinessRegister');
+              navigate('/Dashboard');
             }}
           >
-            Sign up your business
-          </Button>
+            Dashboard
+          </Button> 
+          )
+          }
           <Button
             mr={3}
             color="#114d4d"
@@ -110,6 +132,9 @@ const Navbar = (props) => {
           >
             About
           </Button>
+
+
+          {/* conditional render of login / logout */}
           {!currentUser ? (
           <Button
             mr={3}
@@ -181,6 +206,8 @@ const Navbar = (props) => {
           >
             Find stores near you
           </Button>
+          {currentUser ? (
+
           <Button
             mt={4}
             color="#114d4d"
@@ -191,6 +218,18 @@ const Navbar = (props) => {
           >
             Sign up your business
           </Button>
+          ) : (
+            <Button
+            mt={4}
+            color="#114d4d"
+            variant="ghost"
+            borderColor="#114d4d"
+            _hover={{ bg: '#114d4d', color: 'white' }}
+            onClick= {closeMenuDashboard}
+          >
+            Dashboard
+          </Button>
+          )}
           <Button
             mt={4}
             color="#114d4d"

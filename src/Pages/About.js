@@ -1,11 +1,10 @@
  import React from 'react'
- import { Container, Heading, Text, Flex, Button, Box, Image, Link} from '@chakra-ui/react';
- import {useNavigate} from 'react-router-dom'
+ import { Container, Heading, Text, Flex,  Box, Image, Link} from '@chakra-ui/react';
 import Foodtrashset from '../assets/Foodtrashset.jpg'
 
 
 const About = () => {
-   let  navigate = useNavigate()
+   
   return (
     <Container
       maxW="full"
