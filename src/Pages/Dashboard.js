@@ -12,6 +12,7 @@ import { doc, getDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { db } from '../components/firebase-config';
 import { useAuthContext } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import Popup from '../components/Popup';
 
 const Dashboard = () => {
   let navigate = useNavigate();
@@ -92,38 +93,39 @@ useEffect(() => {
       </Heading>
       {error && <Alert status="error">{error}</Alert>}
       {message && <Alert status="success">{message}</Alert>}
-      <Heading color="#114d4d" size="lg" mb={2}>
-        Name{' '}
-      </Heading>{' '}
-      <Text mb={4} fontSize="xl" color="#114d4d">
-        {data.Name}
-      </Text>
-      <Heading color="#114d4d" size="lg" mb={2}>
-        Address{' '}
-      </Heading>
-      <Text mb={4} fontSize="xl" color="#114d4d">
-        {data.Adress}
-      </Text>
-      <Heading color="#114d4d" size="lg" mb={2}>
-        Email
-      </Heading>{' '}
-      <Text mb={4} fontSize="xl" color="#114d4d">
-        {data.Email}
-      </Text>
-      <Heading color="#114d4d" size="lg" mb={2}>
-        Available bags of food
-      </Heading>{' '}
-      <Text mb={4} fontSize="xl" color="#114d4d">
-        {data.FoodBags}
-      </Text>
-      <Input
-        focusBorderColor="#114d4d"
-        type="number"
-        mb={4}
-        w="50%"
-        placeholder="New amount of food bags"
-        ref={bagRef}
-      />
+      <Container>
+        <Heading color="#114d4d" size="lg" mb={2}>
+          Name{' '}
+        </Heading>{' '}
+        <Text mb={4} fontSize="xl" color="#114d4d">
+          {data.Name}
+        </Text>
+        <Heading color="#114d4d" size="lg" mb={2}>
+          Address{' '}
+        </Heading>
+        <Text mb={4} fontSize="xl" color="#114d4d">
+          {data.Adress}
+        </Text>
+        <Heading color="#114d4d" size="lg" mb={2}>
+          Email
+        </Heading>{' '}
+        <Text mb={4} fontSize="xl" color="#114d4d">
+          {data.Email}
+        </Text>
+        <Heading color="#114d4d" size="lg" mb={2}>
+          Available bags of food
+        </Heading>{' '}
+        <Text mb={4} fontSize="xl" color="#114d4d">
+          {data.FoodBags}
+        </Text>
+        <Input
+          focusBorderColor="#114d4d"
+          type="number"
+          mb={4}
+          w="50%"
+          placeholder="New amount of food bags"
+          ref={bagRef}
+        />
       <Flex mb={[12, 12, 8, 8]}>
         <Button
           mr={4}
@@ -133,7 +135,7 @@ useEffect(() => {
           border="1px solid"
           _hover={{ bg: '#114d4d', color: 'white' }}
           onClick={updateDocs}
-        >
+          >
           Save changes
         </Button>
         <Button
@@ -143,11 +145,12 @@ useEffect(() => {
           border="1px solid"
           _hover={{ bg: '#114d4d', color: 'white' }}
           onClick={handleLogout}
-        >
+          >
           Log Out
         </Button>
       </Flex>
-      <Text
+      </Container>
+      {/* <Text
         cursor="pointer"
         _hover={{ textDecor: 'underline' }}
         color="#49ada1"
@@ -155,7 +158,8 @@ useEffect(() => {
         onClick={handleDelete}
       >
         Delete account
-      </Text>
+      </Text> */}
+      <Popup action={()=>handleDelete()} />
     </Container>
   );
 };
