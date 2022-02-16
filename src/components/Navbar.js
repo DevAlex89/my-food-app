@@ -206,7 +206,7 @@ const Navbar = () => {
           >
             Find stores near you
           </Button>
-          {currentUser ? (
+          {!currentUser ? (
 
           <Button
             mt={4}
