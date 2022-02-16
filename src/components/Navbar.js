@@ -13,7 +13,7 @@ import {
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
 
-const Navbar = () => {
+const Navbar = (props) => {
   let navigate = useNavigate();
   const [dis, setDis] = useState('none');
 

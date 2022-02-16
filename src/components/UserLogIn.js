@@ -9,7 +9,7 @@ import {
   InputLeftElement,
   Grid,
   GridItem,
-  position,
+  Alert,
 } from '@chakra-ui/react';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { BsSearch } from 'react-icons/bs';
@@ -27,12 +27,16 @@ import 'firebase/compat/firestore';
 import * as geofirestore from 'geofirestore';
 import { signInWithGmail } from './firebase-config';
 
+
 const UserLogIn = () => {
   let navigate = useNavigate();
   const [userPosition, setUserPosition] = useState({ lat: null, lng: null });
   const [shopList, setShopList] = useState([]);
   const [address, setAddress] = useState('');
   const [userEmail, setUserEmail] = useState('');
+  const [message, setMessage] = useState('')
+
+  
 
   // initialize geofirestore
   firebase.initializeApp(firebaseConfig);
@@ -55,7 +59,6 @@ const UserLogIn = () => {
   const trackUser = async () => {
     try{
     navigator.geolocation.getCurrentPosition(function (position) {
-      console.log(position);
       setAddress(position.address)
       setUserPosition({
         lat: position.coords.latitude,
@@ -65,12 +68,14 @@ const UserLogIn = () => {
     });
    }catch(err){
      console.log(err.message)
+     setMessage('Could not retrieve your coordinates. Please try typing your address')
    }
 
   };
 
   // autocomplete address for user
   const handleSelect = async value => {
+    setMessage('')
     const results = await geocodeByAddress(value);
     const latLng = await getLatLng(results[0]);
     setAddress(value);
@@ -79,23 +84,32 @@ const UserLogIn = () => {
 
   // query for the shops based on the user location
 
-  const getNearShops = () => {
-    const query = geocollection.near({
-      center: new firebase.firestore.GeoPoint(
-        userPosition.lat,
-        userPosition.lng
-      ),
-      radius: 5,
-    });
-    query.get().then(value => {
-      // All GeoDocument returned by GeoQuery, like the GeoDocument added above
-      //  console.log(value.docs)
-      for (const doc of value.docs) {
-        //  console.log(doc.data())
-        shopList.push(doc.data());
-      }
-      setUserPosition({ lat: null, lng: null });
-    });
+  const getNearShops = async () => {
+    setShopList([])
+    setMessage('')
+    try{
+         const query =  geocollection.near({
+          center: new firebase.firestore.GeoPoint(
+            userPosition.lat,
+            userPosition.lng
+            ),
+            radius: 5,
+          });
+          
+         await query.get().then(value => {
+            
+            for (const doc of value.docs) {
+              setShopList(oldArray => [...oldArray,doc.data()]);
+            }
+            setUserPosition({ lat: null, lng: null });
+            if ( value.docs.length === 0) {
+              setMessage('No shops found near your location')
+            }
+          
+        });
+    }catch{
+      setMessage('No shops found near your location')
+    }
   };
 
   // Sign in user
@@ -222,6 +236,7 @@ const UserLogIn = () => {
             to reveal the Fritternot partners nearest to you!
           </Text>
         )}
+        {message && <Alert status='warning' align='center'>{message}</Alert>}
       </Container>
     </Box>
   );
