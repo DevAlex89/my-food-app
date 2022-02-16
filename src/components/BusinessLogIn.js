@@ -23,6 +23,7 @@ const BusinessLogin = () => {
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const {login, forgotPassword} = useAuthContext()
+  const [message, setMessage] = useState('')
   
   
 
@@ -51,6 +52,7 @@ const BusinessLogin = () => {
       await forgotPassword(emailRef.current.value).then(() => {
         emailRef.current.value = "";
       });
+      setMessage('An email has been sent with instructions to reset your password')
     } catch (err){
       setError('Wrong Email')
     }
@@ -61,6 +63,7 @@ const BusinessLogin = () => {
     <Container minH='76vh'>
       <Heading align='center' color='#114d4d' mt={5} mb={2} >Log In</Heading>
       {error && <Alert status="error">{error}</Alert>}
+      {message && <Alert status="success">{message}</Alert>}
       <FormControl  >
         <FormLabel color='#114d4d'>Email</FormLabel>
         <Input
