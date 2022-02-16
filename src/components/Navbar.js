@@ -12,10 +12,30 @@ import {
 } from '@chakra-ui/react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
+import { useAuthContext } from '../contexts/AuthContext';
+
 
 const Navbar = (props) => {
   let navigate = useNavigate();
   const [dis, setDis] = useState('none');
+  const { currentUser, logoutUser} = useAuthContext()
+  const [error, setError] = useState('')
+
+
+// logout function
+  const handleLogout = async () => {
+    setError('')
+    try{
+      setDis('none')
+        logoutUser()
+        navigate('/')
+    }catch{
+        
+        setError('Failed to log out')
+    }
+}
+
+
 
   const closeMenuFind = () => {
     setDis('none');
@@ -33,6 +53,9 @@ const Navbar = (props) => {
     setDis('none');
     navigate('/BusinessLogIn')
   };
+
+
+
   return (
     <Container maxW="100%" centerContent mt={4} overflow="hidden" bg={'white'}>
       <Flex w="80%" align="center" ml={10}>
@@ -87,6 +110,7 @@ const Navbar = (props) => {
           >
             About
           </Button>
+          {!currentUser ? (
           <Button
             mr={3}
             border="1px solid"
@@ -96,10 +120,20 @@ const Navbar = (props) => {
             _hover={{ bg: '#114d4d', color: 'white' }}
             onClick={() => {
               navigate('/BusinessLogin');
-            }}
+          }}
           >
             Log In
           </Button>
+          ) : (
+            <Button 
+                color="#114d4d"
+                variant="ghost"
+                borderColor="#114d4d"
+                border="1px solid"
+                _hover={{ bg: '#114d4d', color: 'white' }}
+                onClick={handleLogout}>Log Out</Button>
+          )}
+
         </Box>
         <IconButton
           size="lg"
@@ -167,21 +201,28 @@ const Navbar = (props) => {
           >
             About
           </Button>
+           {!currentUser ? (
           <Button
             mt={4}
+            border="1px solid"
             color="#114d4d"
             variant="ghost"
             borderColor="#114d4d"
             _hover={{ bg: '#114d4d', color: 'white' }}
-            _active={{
-              bg: '#dddfe2',
-              transform: 'scale(0.98)',
-              borderColor: '#bec3c9',
-            }}
             onClick={closeMenuLogin}
           >
             Log In
           </Button>
+          ) : (
+            <Button 
+                mt={4}
+                color="#114d4d"
+                variant="ghost"
+                borderColor="#114d4d"
+                border="1px solid"
+                _hover={{ bg: '#114d4d', color: 'white' }}
+                onClick={handleLogout}>Log Out</Button>
+          )}
         </Flex>
       </Flex>
     </Container>
