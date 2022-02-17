@@ -1,5 +1,6 @@
 import {
   Alert,
+  Box,
   Button,
   Container,
   Flex,
@@ -21,11 +22,26 @@ const Dashboard = () => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const bagRef = useRef();
-
-
-//the database refs
-const docRef = doc(db, 'shops', currentUser.uid);
-const geoDocRef = doc(db, 'shopsLocation', currentUser.uid);
+  
+  
+  //the database refs
+  const docRef = doc(db, 'shops', currentUser.uid);
+  const geoDocRef = doc(db, 'shopsLocation', currentUser.uid);
+  const updateDocs = async () => {
+    setError('');
+    try {
+      await updateDoc(docRef, {
+        FoodBags: bagRef.current.value,
+      });
+      await updateDoc(geoDocRef, {
+        FoodBags: bagRef.current.value,
+      });
+    } catch (err) {
+      console.log(err.message);
+      return setError('Something went wrong! Please try again');
+    }
+    setMessage('Changes saved successfully!');
+  };
 
 useEffect(() => {
   const abortController = new AbortController()
@@ -44,24 +60,9 @@ useEffect(() => {
     }
   
     
-  }, []);
+  }, [updateDocs]);
 
   
-  const updateDocs = async () => {
-    setError('');
-    try {
-      await updateDoc(docRef, {
-        FoodBags: bagRef.current.value,
-      });
-      await updateDoc(geoDocRef, {
-        FoodBags: bagRef.current.value,
-      });
-    } catch (err) {
-      setError('Something went wrong! Please try again');
-      console.log(err.message);
-    }
-    setMessage('Changes saved successfully!');
-  };
 
   const handleLogout = async () => {
     setError('');
@@ -87,13 +88,13 @@ useEffect(() => {
   };
 
   return (
-    <Container centerContent bg={'white'} minH="76vh" mt={5}>
+    <Container centerContent bg={'white'} minH="80vh" mt={5}>
       <Heading mb={8} color="#114d4d">
         Dashboard
       </Heading>
       {error && <Alert status="error">{error}</Alert>}
       {message && <Alert status="success">{message}</Alert>}
-      <Container>
+      <Container maxW={'container.xl'}  >
         <Heading color="#114d4d" size="lg" mb={2}>
           Name{' '}
         </Heading>{' '}
@@ -126,40 +127,27 @@ useEffect(() => {
           placeholder="New amount of food bags"
           ref={bagRef}
         />
-      <Flex mb={[12, 12, 8, 8]}>
-        <Button
-          mr={4}
-          color="#114d4d"
-          variant="ghost"
-          borderColor="#114d4d"
-          border="1px solid"
-          _hover={{ bg: '#114d4d', color: 'white' }}
-          onClick={updateDocs}
-          >
-          Save changes
-        </Button>
-        <Button
-          color="#114d4d"
-          variant="ghost"
-          borderColor="#114d4d"
-          border="1px solid"
-          _hover={{ bg: '#114d4d', color: 'white' }}
-          onClick={handleLogout}
-          >
-          Log Out
-        </Button>
+      <Flex mb={[12, 12, 8, 8]} justify='center' align={'center'} flexDir={['column','column','row', 'row']} >
+        <Flex flexDir={['column','column','row', 'row']} >
+          <Button
+            color="#114d4d"
+            variant="ghost"
+            borderColor="#114d4d"
+            border="1px solid"
+            _hover={{ bg: '#114d4d', color: 'white' }}
+            onClick={updateDocs}
+            >
+            Save changes
+          </Button>
+          <Box>
+           <Popup text='Log out' header='Are you sure you want to log out?' action={()=>handleLogout()} />
+          </Box>
+        </Flex >
+        <Box>
+          <Popup text='Delete Account' header='Are you sure you want to delete your account?' body='This action is irreversible' action={()=>handleDelete()} />
+        </Box>
       </Flex>
       </Container>
-      {/* <Text
-        cursor="pointer"
-        _hover={{ textDecor: 'underline' }}
-        color="#49ada1"
-        fontSize={'lg'}
-        onClick={handleDelete}
-      >
-        Delete account
-      </Text> */}
-      <Popup action={()=>handleDelete()} />
     </Container>
   );
 };

@@ -72,6 +72,7 @@ const BusinessLogin = () => {
         <Input
           focusBorderColor="#114d4d"
           type="email"
+          placeholder='Email'
           ref={emailRef}
           required
         />
@@ -79,6 +80,7 @@ const BusinessLogin = () => {
         <Input
           focusBorderColor="#114d4d"
           type="password"
+          placeholder='Requires at least 6 characters'
           ref={passwordRef}
           required
         />

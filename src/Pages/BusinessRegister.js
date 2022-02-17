@@ -90,7 +90,7 @@ function BusinessRegister() {
     } catch {
       setError('Failed to create an account')
     }
-    navigate('/BusinessLogin')
+    navigate('/Dashboard')
     
   }
   

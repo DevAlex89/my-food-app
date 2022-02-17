@@ -13,6 +13,7 @@ import {
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { MdClose } from 'react-icons/md';
 import { useAuthContext } from '../contexts/AuthContext';
+import Popup from './Popup';
 
 
 const Navbar = () => {
@@ -23,7 +24,7 @@ const Navbar = () => {
 
 
 // logout function
-  const handleLogout = async () => {
+  const handleLogouts = async () => {
     setError('')
     try{
       setDis('none')
@@ -150,13 +151,9 @@ const Navbar = () => {
             Log In
           </Button>
           ) : (
-            <Button 
-                color="#114d4d"
-                variant="ghost"
-                borderColor="#114d4d"
-                border="1px solid"
-                _hover={{ bg: '#114d4d', color: 'white' }}
-                onClick={handleLogout}>Log Out</Button>
+            <Box mr={3}>
+             <Popup text='Log out' header='Are you sure you want to log out?' action={()=>handleLogouts()} />
+            </Box>
           )}
 
         </Box>
@@ -253,14 +250,9 @@ const Navbar = () => {
             Log In
           </Button>
           ) : (
-            <Button 
-                mt={4}
-                color="#114d4d"
-                variant="ghost"
-                borderColor="#114d4d"
-                border="1px solid"
-                _hover={{ bg: '#114d4d', color: 'white' }}
-                onClick={handleLogout}>Log Out</Button>
+            <Box mt={3}>
+             <Popup text='Log out' header='Are you sure you want to log out?' action={()=>handleLogouts()} />
+            </Box>
           )}
         </Flex>
       </Flex>

@@ -8,14 +8,18 @@ function Popup(props) {
   return (
       <>
         <Container>
-            <Button onClick={onOpen} colorScheme='teal' variant={'ghost'} >Delete Account</Button>
+            <Button onClick={onOpen} color="#114d4d"
+          variant="ghost"
+          borderColor="#114d4d"
+          border="1px solid"
+          _hover={{ bg: '#114d4d', color: 'white' }} >{props.text}</Button>
             <Modal finalFocusRef={focusRef} isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
-                    <ModalHeader>Are you sure you want to delete your account?</ModalHeader>
+                    <ModalHeader mt={3}>{props.header}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <Text>this action is irreversible</Text>
+                        <Text>{props.body}</Text>
                     </ModalBody>
 
                     <ModalFooter>
