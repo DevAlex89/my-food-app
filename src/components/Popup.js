@@ -6,13 +6,14 @@ function Popup(props) {
     const focusRef = useRef()
 
   return (
-      <>
+      
         <Container>
             <Button onClick={onOpen} color="#114d4d"
-          variant="ghost"
-          borderColor="#114d4d"
-          border="1px solid"
-          _hover={{ bg: '#114d4d', color: 'white' }} >{props.text}</Button>
+              variant="ghost"
+              borderColor="#114d4d"
+              border="1px solid"
+              w={'full'}
+              _hover={{ bg: '#114d4d', color: 'white' }} >{props.text}</Button>
             <Modal finalFocusRef={focusRef} isOpen={isOpen} onClose={onClose}>
                     <ModalOverlay />
                     <ModalContent>
@@ -31,7 +32,7 @@ function Popup(props) {
                     </ModalContent>
                 </Modal>
             </Container>
-  </>
+  
   )
 }
 

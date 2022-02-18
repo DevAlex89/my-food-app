@@ -123,29 +123,33 @@ useEffect(() => {
           focusBorderColor="#114d4d"
           type="number"
           mb={4}
-          w="50%"
+          w={['100%', '100%','50%',"50%"]}
           placeholder="New amount of food bags"
           ref={bagRef}
         />
-      <Flex mb={[12, 12, 8, 8]} justify='center' align={'center'} flexDir={['column','column','row', 'row']} >
-        <Flex flexDir={['column','column','row', 'row']} >
-          <Button
-            color="#114d4d"
-            variant="ghost"
-            borderColor="#114d4d"
-            border="1px solid"
-            _hover={{ bg: '#114d4d', color: 'white' }}
-            onClick={updateDocs}
-            >
-            Save changes
-          </Button>
-          <Box>
-           <Popup text='Log out' header='Are you sure you want to log out?' action={()=>handleLogout()} />
-          </Box>
-        </Flex >
-        <Box>
+      <Flex mb={[12, 12, 8, 8]} justify='center' align={['flex-start', 'flex-start', 'center', 'center']} flexDir={['column','column','row', 'row']} >
+       <Container w={'full'}>
+          <Flex flexDir={['column','column','row', 'row']} >
+            <Button
+               mt={2}
+              color="#114d4d"
+              variant="ghost"
+              w={'full'}
+              borderColor="#114d4d"
+              border="1px solid"
+              _hover={{ bg: '#114d4d', color: 'white' }}
+              onClick={updateDocs}
+              >
+              Save changes
+            </Button>
+            <Container  w='full' mt={2} >
+             <Popup text='Log out' header='Are you sure you want to log out?   ' action={()=>handleLogout()} />
+            </Container>
+          </Flex >
+        </Container>
+        <Container mt={2}>
           <Popup text='Delete Account' header='Are you sure you want to delete your account?' body='This action is irreversible' action={()=>handleDelete()} />
-        </Box>
+        </Container>
       </Flex>
       </Container>
     </Container>
