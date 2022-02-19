@@ -26,10 +26,13 @@ import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 import * as geofirestore from 'geofirestore';
 import { signInWithGmail } from '../components/firebase-config';
+import { useAuthContext } from '../contexts/AuthContext';
+
 
 
 const UserLogIn = () => {
   let navigate = useNavigate();
+  const { currentUser, logoutUser} = useAuthContext();
   const [userPosition, setUserPosition] = useState({ lat: null, lng: null });
   const [shopList, setShopList] = useState([]);
   const [address, setAddress] = useState('');
@@ -115,13 +118,14 @@ const UserLogIn = () => {
     try {
       await signInWithGmail();
       navigate('/UserThank');
+      await logoutUser()
     } catch (error) {
       alert(error.message);
     }
   };
 
   return (
-    <Box bg="white" maxW="full" minH="72vh" centerContent>
+    <Box bg="white" maxW="full" minH="80vh" centerContent>
       <Container maxW="container.lg" mt={12} centerContent>
         <Heading color="#114d4d" mb={4} align="center">
           Find fine food near you

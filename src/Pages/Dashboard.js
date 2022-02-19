@@ -81,10 +81,10 @@ useEffect(() => {
       await deleteDoc(geoDocRef);
       await deleteAccount();
       alert('Your account was successfully deleted');
-      navigate('/');
     } catch {
       setError('Failed to delete account');
     }
+    navigate('/');
   };
 
   return (
