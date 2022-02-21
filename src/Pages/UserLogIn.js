@@ -81,6 +81,7 @@ const UserLogIn = () => {
     const latLng = await getLatLng(results[0]);
     setAddress(value);
     setUserPosition({ lat: latLng.lat, lng: latLng.lng });
+    
   };
 
   // query for the shops based on the user location

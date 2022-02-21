@@ -21,7 +21,8 @@ const Dashboard = () => {
   const [data, setData] = useState({});
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const bagRef = useRef();
+  const bagRef = useRef(0);
+  const [bagUpdate, setBagUpdate] = useState(0)
   
   
   //the database refs
@@ -31,10 +32,10 @@ const Dashboard = () => {
     setError('');
     try {
       await updateDoc(docRef, {
-        FoodBags: bagRef.current.value,
+        FoodBags: bagUpdate,
       });
       await updateDoc(geoDocRef, {
-        FoodBags: bagRef.current.value,
+        FoodBags: bagUpdate,
       });
     } catch (err) {
       console.log(err.message);
@@ -60,7 +61,7 @@ useEffect(() => {
     }
   
     
-  }, [updateDocs]);
+  }, [bagUpdate]);
 
   
 
@@ -81,10 +82,10 @@ useEffect(() => {
       await deleteDoc(geoDocRef);
       await deleteAccount();
       alert('Your account was successfully deleted');
+      navigate('/');
     } catch {
       setError('Failed to delete account');
     }
-    navigate('/');
   };
 
   return (
@@ -125,7 +126,9 @@ useEffect(() => {
           mb={4}
           w={['100%', '100%','50%',"50%"]}
           placeholder="New amount of food bags"
-          ref={bagRef}
+          value={bagUpdate}
+          onChange={(e)=>{setBagUpdate(e.target.value)}}
+          // ref={bagRef}
         />
       <Flex mb={[12, 12, 8, 8]} justify='center' align={['flex-start', 'flex-start', 'center', 'center']} flexDir={['column','column','row', 'row']} >
        <Container w={'full'}>
@@ -143,7 +146,7 @@ useEffect(() => {
               Save changes
             </Button>
             <Container  w='full' mt={2} >
-             <Popup text='Log out' header='Are you sure you want to log out?   ' action={()=>handleLogout()} />
+             <Popup text='Log out' header='Are you sure you want to log out?' action={()=>handleLogout()} />
             </Container>
           </Flex >
         </Container>
