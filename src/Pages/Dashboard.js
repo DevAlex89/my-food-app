@@ -120,9 +120,6 @@ useEffect(() => {
         <Heading color="#114d4d" size="lg" mb={2}>
           Available bags of food
         </Heading>{' '}
-        {/* <Text mb={4} fontSize="xl" color="#114d4d">
-          {data.FoodBags}
-        </Text> */}
         <Input
           focusBorderColor="#114d4d"
           type="number"
@@ -131,7 +128,6 @@ useEffect(() => {
           placeholder={data.FoodBags}
           value={bagUpdate}
           onChange={(e)=>setBagUpdate(e.target.value)}
-          // ref={bagRef}
         />
       <Flex mb={[12, 12, 8, 8]} justify='center' align={['flex-start', 'flex-start', 'center', 'center']} flexDir={['column','column','row', 'row']} >
        <Container w={'full'}>
