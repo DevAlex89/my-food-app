@@ -21,13 +21,15 @@ const Dashboard = () => {
   const [data, setData] = useState({});
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const bagRef = useRef(0);
-  const [bagUpdate, setBagUpdate] = useState(0)
+  const bagRef = useRef();
+  const [bagUpdate, setBagUpdate] = useState()
   
   
   //the database refs
   const docRef = doc(db, 'shops', currentUser.uid);
   const geoDocRef = doc(db, 'shopsLocation', currentUser.uid);
+
+
   const updateDocs = async () => {
     setError('');
     try {
@@ -50,6 +52,7 @@ useEffect(() => {
     try{
         const docSnap = await getDoc(docRef)
         setData(docSnap.data())
+        setBagUpdate(data.FoodBags)
       }catch(err){
         console.log(err.message)
       }
@@ -61,7 +64,7 @@ useEffect(() => {
     }
   
     
-  }, [bagUpdate]);
+  }, []);
 
   
 
@@ -117,17 +120,17 @@ useEffect(() => {
         <Heading color="#114d4d" size="lg" mb={2}>
           Available bags of food
         </Heading>{' '}
-        <Text mb={4} fontSize="xl" color="#114d4d">
+        {/* <Text mb={4} fontSize="xl" color="#114d4d">
           {data.FoodBags}
-        </Text>
+        </Text> */}
         <Input
           focusBorderColor="#114d4d"
           type="number"
           mb={4}
           w={['100%', '100%','50%',"50%"]}
-          placeholder="New amount of food bags"
+          placeholder={data.FoodBags}
           value={bagUpdate}
-          onChange={(e)=>{setBagUpdate(e.target.value)}}
+          onChange={(e)=>setBagUpdate(e.target.value)}
           // ref={bagRef}
         />
       <Flex mb={[12, 12, 8, 8]} justify='center' align={['flex-start', 'flex-start', 'center', 'center']} flexDir={['column','column','row', 'row']} >
