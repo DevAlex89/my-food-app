@@ -6,6 +6,7 @@ import {
   Flex,
   Heading,
   Input,
+  Spacer,
   Text,
 } from '@chakra-ui/react';
 import React, { useEffect, useRef, useState } from 'react';
@@ -21,7 +22,6 @@ const Dashboard = () => {
   const [data, setData] = useState({});
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const bagRef = useRef();
   const [bagUpdate, setBagUpdate] = useState()
   
   
@@ -130,7 +130,7 @@ useEffect(() => {
           onChange={(e)=>setBagUpdate(e.target.value)}
         />
       <Flex mb={[12, 12, 8, 8]} justify='center' align={['flex-start', 'flex-start', 'center', 'center']} flexDir={['column','column','row', 'row']} >
-       <Container w={'full'}>
+       <Container >
           <Flex flexDir={['column','column','row', 'row']} >
             <Button
                mt={2}
@@ -144,10 +144,8 @@ useEffect(() => {
               >
               Save changes
             </Button>
-            <Container  w='full' mt={2} >
-             <Popup text='Log out' header='Are you sure you want to log out?' action={()=>handleLogout()} />
-            </Container>
           </Flex >
+          <Spacer/>
         </Container>
         <Container mt={2}>
           <Popup text='Delete Account' header='Are you sure you want to delete your account?' body='This action is irreversible' action={()=>handleDelete()} />
